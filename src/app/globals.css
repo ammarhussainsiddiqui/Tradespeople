@@ -1,0 +1,467 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* ================================================================
+     THE TRADE CORE — VS CODE THEME
+     Light mirrors VS Code "Light+", dark mirrors "Dark+" (the theme set in
+     workbench.colorTheme). Values come from VS Code's own theme files and
+     colour registry: editor #1E1E1E / #FFFFFF, sidebar #252526 / #F3F3F3,
+     button #0E639C / #007ACC, status bar #007ACC, link #3794FF / #006AB1,
+     selection #04395E, focus #007FD4 / #0090F1.
+     VS Code values nudged (HSL lightness only) to clear WCAG AA:
+       - light muted-foreground (descriptionForeground) #717171 -> #6B6B6B
+       - light success #16825D -> #157E5A
+       - light warning (editorWarning) #BF8803 -> #8D6502
+     --accent-text / --primary-text are VS Code's separate link colour:
+     Tailwind maps text-accent / text-primary to them, so blue stays a
+     button colour and text on dark grounds stays readable.
+     ================================================================ */
+  :root {
+    --background: 0 0% 95%;  /* #F2F2F2 */
+    --foreground: 0 0% 20%;  /* #333333 */
+    --card: 0 0% 100%;  /* #FFFFFF */
+    --card-foreground: 0 0% 20%;  /* #333333 */
+    --popover: 0 0% 100%;  /* #FFFFFF */
+    --popover-foreground: 0 0% 20%;  /* #333333 */
+    --primary: 210 100% 38%;  /* #0061C2 */
+    --primary-foreground: 0 0% 100%;  /* #FFFFFF */
+    --primary-hover: 210 100% 30%;  /* #004C99 */
+    --primary-text: 210 100% 38%;  /* #0061C2 */
+    --secondary: 0 0% 91%;  /* #E8E8E8 */
+    --secondary-foreground: 0 0% 20%;  /* #333333 */
+    --muted: 0 0% 93%;  /* #EDEDED */
+    --muted-foreground: 0 0% 42%;  /* #6B6B6B */
+    --accent: 204 100% 40%;  /* #007ACC */
+    --accent-foreground: 0 0% 100%;  /* #FFFFFF */
+    --accent-hover: 204 100% 32%;  /* #0062A3 */
+    --accent-text: 204 100% 35%;  /* #006BB2 */
+    --destructive: 10 86% 42%;  /* #C72E0F */
+    --destructive-foreground: 0 0% 100%;  /* #FFFFFF */
+    --destructive-soft: 11 61% 93%;  /* #F8E6E2 */
+    --destructive-soft-foreground: 10 86% 31%;  /* #93220B */
+    --border: 0 0% 83%;  /* #D4D4D4 */
+    --input: 0 0% 81%;  /* #CFCFCF */
+    --ring: 204 100% 47%;  /* #0090F0 */
+    --radius: 0.625rem;
+
+    --chart-1: 204 100% 40%;  /* #007ACC */
+    --chart-2: 159 71% 29%;  /* #157E5A */
+    --chart-3: 43 97% 28%;  /* #8D6502 */
+    --chart-4: 10 86% 42%;  /* #C72E0F */
+    --chart-5: 0 0% 44%;  /* #707070 */
+
+    --surface: 0 0% 100%;  /* #FFFFFF */
+    --surface-subtle: 0 0% 97%;  /* #F7F7F7 */
+    --surface-soft: 0 0% 95%;  /* #F2F2F2 */
+    --surface-muted: 0 0% 93%;  /* #EDEDED */
+    --surface-info: 231 32% 92%;  /* #E4E6F1 */
+    --surface-info-hover: 0 0% 91%;  /* #E8E8E8 */
+    --ink-strong: 0 0% 12%;  /* #1F1F1F */
+    --ink-soft: 0 0% 38%;  /* #616161 */
+    --ink-muted: 0 0% 42%;  /* #6B6B6B */
+    --ink-inverse: 0 0% 100%;  /* #FFFFFF */
+
+    --success: 159 71% 29%;  /* #157E5A */
+    --success-foreground: 0 0% 100%;  /* #FFFFFF */
+    --success-soft: 157 32% 92%;  /* #E4F1EC */
+    --success-soft-foreground: 160 71% 22%;  /* #106045 */
+    --warning: 43 97% 28%;  /* #8D6502 */
+    --warning-foreground: 0 0% 100%;  /* #FFFFFF */
+    --warning-soft: 45 35% 91%;  /* #F0ECE0 */
+    --warning-soft-foreground: 43 96% 21%;  /* #694C02 */
+    --info: 204 100% 35%;  /* #006BB2 */
+    --info-foreground: 0 0% 100%;  /* #FFFFFF */
+    --info-soft: 206 56% 92%;  /* #DFECF6 */
+    --info-soft-foreground: 204 100% 26%;  /* #005085 */
+
+    --neutral-50: 0 0% 97%;  /* #F7F7F7 */
+    --neutral-100: 0 0% 95%;  /* #F2F2F2 */
+    --neutral-200: 0 0% 91%;  /* #E8E8E8 */
+    --neutral-300: 0 0% 83%;  /* #D4D4D4 */
+    --neutral-400: 0 0% 65%;  /* #A6A6A6 */
+    --neutral-500: 0 0% 46%;  /* #757575 */
+    --neutral-600: 0 0% 42%;  /* #6B6B6B */
+    --neutral-700: 0 0% 38%;  /* #616161 */
+    --neutral-800: 0 0% 20%;  /* #333333 */
+    --neutral-900: 0 0% 12%;  /* #1F1F1F */
+    --overlay: 0 0% 0%;  /* #000000 */
+    --shadow-soft: 0 0% 0% / 0.16;
+    --shadow-strong: 0 0% 0% / 0.36;
+  }
+
+  /* Dark+ */
+  .dark {
+    --background: 0 0% 12%;  /* #1F1F1F */
+    --foreground: 0 0% 80%;  /* #CCCCCC */
+    --card: 240 1% 15%;  /* #262627 */
+    --card-foreground: 0 0% 80%;  /* #CCCCCC */
+    --popover: 240 1% 15%;  /* #262627 */
+    --popover-foreground: 0 0% 80%;  /* #CCCCCC */
+    --primary: 204 84% 33%;  /* #0D629B */
+    --primary-foreground: 0 0% 100%;  /* #FFFFFF */
+    --primary-hover: 204 83% 40%;  /* #1177BB */
+    --primary-text: 212 100% 61%;  /* #3895FF */
+    --secondary: 214 6% 24%;  /* #3A3D41 */
+    --secondary-foreground: 0 0% 100%;  /* #FFFFFF */
+    --muted: 0 0% 18%;  /* #2E2E2E */
+    --muted-foreground: 0 0% 62%;  /* #9E9E9E */
+    --accent: 204 100% 40%;  /* #007ACC */
+    --accent-foreground: 0 0% 100%;  /* #FFFFFF */
+    --accent-hover: 207 86% 40%;  /* #0E6FBE */
+    --accent-text: 212 100% 61%;  /* #3895FF */
+    --destructive: 10 86% 70%;  /* #F48771 */
+    --destructive-foreground: 0 0% 12%;  /* #1F1F1F */
+    --destructive-soft: 9 17% 24%;  /* #483633 */
+    --destructive-soft-foreground: 10 86% 70%;  /* #F48771 */
+    --border: 0 0% 24%;  /* #3D3D3D */
+    --input: 0 0% 42%;  /* #6B6B6B */
+    --ring: 204 100% 42%;  /* #0081D6 */
+
+    --chart-1: 212 100% 61%;  /* #3895FF */
+    --chart-2: 141 44% 62%;  /* #73C991 */
+    --chart-3: 49 100% 40%;  /* #CCA700 */
+    --chart-4: 10 86% 70%;  /* #F48771 */
+    --chart-5: 0 0% 62%;  /* #9E9E9E */
+
+    --surface: 240 1% 15%;  /* #262627 */
+    --surface-subtle: 0 0% 18%;  /* #2E2E2E */
+    --surface-soft: 195 5% 17%;  /* #292C2E */
+    --surface-muted: 0 0% 20%;  /* #333333 */
+    --surface-info: 205 92% 19%;  /* #04385D */
+    --surface-info-hover: 195 5% 17%;  /* #292C2E */
+    --ink-strong: 0 0% 83%;  /* #D4D4D4 */
+    --ink-soft: 0 0% 80%;  /* #CCCCCC */
+    --ink-muted: 0 0% 62%;  /* #9E9E9E */
+    --ink-inverse: 0 0% 100%;  /* #FFFFFF */
+
+    --success: 141 44% 62%;  /* #73C991 */
+    --success-foreground: 0 0% 12%;  /* #1F1F1F */
+    --success-soft: 141 15% 23%;  /* #324338 */
+    --success-soft-foreground: 141 44% 62%;  /* #73C991 */
+    --warning: 49 100% 40%;  /* #CCA700 */
+    --warning-foreground: 0 0% 12%;  /* #1F1F1F */
+    --warning-soft: 48 36% 19%;  /* #423B1F */
+    --warning-soft-foreground: 49 100% 40%;  /* #CCA700 */
+    --info: 212 100% 61%;  /* #3895FF */
+    --info-foreground: 0 0% 12%;  /* #1F1F1F */
+    --info-soft: 212 15% 17%;  /* #252B32 */
+    --info-soft-foreground: 212 100% 61%;  /* #3895FF */
+
+    --neutral-50: 240 1% 15%;  /* #262627 */
+    --neutral-100: 0 0% 18%;  /* #2E2E2E */
+    --neutral-200: 0 0% 20%;  /* #333333 */
+    --neutral-300: 0 0% 24%;  /* #3D3D3D */
+    --neutral-400: 0 0% 42%;  /* #6B6B6B */
+    --neutral-500: 0 0% 52%;  /* #858585 */
+    --neutral-600: 0 0% 62%;  /* #9E9E9E */
+    --neutral-700: 0 0% 73%;  /* #BABABA */
+    --neutral-800: 0 0% 80%;  /* #CCCCCC */
+    --neutral-900: 0 0% 83%;  /* #D4D4D4 */
+    --overlay: 0 0% 0%;  /* #000000 */
+    --shadow-soft: 0 0% 0% / 0.36;
+    --shadow-strong: 0 0% 0% / 0.55;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* global.css */
+@font-face {
+  font-family: 'MyFont';
+  src: url('../app/assets/fonts/SF-Pro-Display-Regular.woff2') format('woff2');
+  font-display: swap;
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+  font-family: 'MyFont', ui-sans-serif, system-ui, sans-serif;
+}
+
+h1, h2, h3, p {
+  font-family: 'MyFont', ui-sans-serif, system-ui, sans-serif;
+}
+
+.bgColor{
+  background-color: hsl(var(--accent));
+}
+
+.bgCover{
+  width : 30%
+}
+
+input.middle:focus {
+  outline-width: 0;
+}
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  background-color: hsl(var(--background));
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background-color: hsl(var(--background));
+  justify-content: center;
+  width: -webkit-fill-available;
+}
+
+
+footer {
+  text-align: center;
+}
+
+
+/* styles.css */
+.person-item {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 8px;
+}
+
+.person-item.selected {
+  background-color: hsl(var(--surface-info));
+}
+
+.person-item:hover {
+  background-color: hsl(var(--surface-info-hover));
+}
+
+.person-details {
+  flex-grow: 1;
+}
+
+.tradespersons-list,
+.tradesperson-profile {
+  background-color: hsl(var(--surface));
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.tradespersons-list {
+  flex: 1;
+  min-width: 250px;
+}
+
+.tradesperson-profile {
+  flex: 2;
+  
+}
+
+.tradespersons-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.person-item {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.person-details {
+  flex-grow: 1;
+}
+.containerp {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  /* padding: 1rem; */
+}
+
+@keyframes ring {
+  0% { transform: rotate(0); }
+  10% { transform: rotate(15deg); }
+  20% { transform: rotate(-10deg); }
+  30% { transform: rotate(10deg); }
+  40% { transform: rotate(-5deg); }
+  50% { transform: rotate(5deg); }
+  100% { transform: rotate(0); }
+}
+
+.animate-ring {
+  animation: ring 1s ease-in-out infinite;
+}
+
+
+
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--muted-foreground) / 0.4) transparent;
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--muted-foreground) / 0.4);
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+
+.react-tel-input .selected-flag:hover, .react-tel-input .selected-flag:focus {
+    background-color: transparent !important;
+}
+.react-tel-input .flag-dropdown.open .selected-flag {
+  background: transparent !important;
+  border-radius: 3px 0 0 0;
+}
+
+.react-tel-input .country-list {
+  outline: none;
+  z-index: 1;
+  list-style: none;
+  position: absolute;
+  padding: 0;
+  border-radius: 18px !important;
+  margin: 10px 0 10px -1px;
+  box-shadow: 1px 2px 10px hsl(var(--shadow-strong));
+  background-color: hsl(var(--surface-subtle)) !important;
+  width: max-content;
+  max-height: 200px;
+  overflow-y: scroll;
+}
+
+.hjmDlo {
+  appearance: none;
+  cursor: pointer;
+  outline: none;
+  display: inline-flex;
+  border-radius: 0.45rem;
+  border: 1px solid hsl(var(--neutral-300));
+  margin: 0.5rem 0px 0px;
+  padding: calc(-2px + 0.75rem) 1rem;
+  min-width: 20rem;
+  width: 100%;
+  height: 3rem;
+  align-items: center;
+  background-color: hsl(var(--surface));
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUiIGhlaWdodD0iMTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTYuNjcgOC45NGMuMjguMjguNzUuMjggMS4wMyAwbDYuMS02LjA2YS43Ny43NyAwIDAgMCAwLTEuMDdsLS43My0uNzJhLjc3Ljc3IDAgMCAwLTEuMDYgMEw3LjIgNS45MSAyLjM2IDEuMDlhLjc3Ljc3IDAgMCAwLTEuMDcgMGwtLjcyLjcyYS43Ny43NyAwIDAgMCAwIDEuMDZsNi4xIDYuMDdaIiBmaWxsPSIjNkY2RjZGIi8+PC9zdmc+);
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  color: hsl(var(--foreground));
+  /* font: 400 1rem / 1.5rem Inter, "Helvetica Neue", Arial, sans-serif; */
+}
+
+.imcTPj {
+  /* font: 400 1rem / 1.5rem Inter, "Helvetica Neue", Arial, sans-serif; */
+  padding: 0.75rem;
+  box-sizing: border-box;
+  border: 1px solid hsl(var(--neutral-300));
+  border-radius: 0.25rem;
+  color: hsl(var(--foreground));
+  background: hsl(var(--surface));
+  display: block;
+  width: 100%;
+  margin: 0px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+#googlebtn > div{
+  width: 100% !important;
+}
+
+#googlebtn > iframe{
+  width: 100% !important;
+}
+
+.jVeSEe{
+    max-width: 101% !important;
+    min-width: 100vw !important;
+}
+
+#googlebtn1 > div{
+  width: 100% !important;
+}
+
+#googlebtn1 > iframe{
+  width: 100% !important;
+}
+
+/* ================================================================
+   THIRD-PARTY COLOUR OVERRIDES
+   react-toastify and react-phone-input-2 ship their own hardcoded
+   palettes (toast blue/green/yellow/red, a rainbow progress bar, pink
+   invalid borders). Re-point them at the brand tokens.
+   `html:root` / `html .x` out-rank the libraries' own selectors, so
+   this wins regardless of stylesheet load order. Tokens flip under
+   .dark on the same element, so no separate dark block is needed.
+   ================================================================ */
+html:root {
+  --toastify-color-light: hsl(var(--card));
+  --toastify-color-dark: hsl(var(--card));
+  --toastify-toast-background: hsl(var(--card));
+  --toastify-text-color-light: hsl(var(--card-foreground));
+  --toastify-text-color-dark: hsl(var(--card-foreground));
+  --toastify-font-family: inherit;
+
+  --toastify-color-info: hsl(var(--info));
+  --toastify-color-success: hsl(var(--success));
+  --toastify-color-warning: hsl(var(--warning));
+  --toastify-color-error: hsl(var(--destructive));
+  --toastify-text-color-info: hsl(var(--info-foreground));
+  --toastify-text-color-success: hsl(var(--success-foreground));
+  --toastify-text-color-warning: hsl(var(--warning-foreground));
+  --toastify-text-color-error: hsl(var(--destructive-foreground));
+
+  --toastify-color-progress-light: hsl(var(--primary));
+  --toastify-color-progress-dark: hsl(var(--primary));
+  --toastify-spinner-color: hsl(var(--muted-foreground));
+  --toastify-spinner-color-empty-area: hsl(var(--border));
+}
+
+html .react-tel-input .form-control,
+html .react-tel-input .flag-dropdown,
+html .react-tel-input .country-list .search-box {
+  border-color: hsl(var(--input));
+}
+/* Invalid numbers: no hue to lean on, so darken and thicken the edge. */
+html .react-tel-input .form-control.invalid-number,
+html .react-tel-input .form-control.invalid-number:focus,
+html .react-tel-input .flag-dropdown.invalid-number {
+  border-color: hsl(var(--foreground));
+  border-width: 2px;
+}
+html .react-tel-input .selected-flag .arrow {
+  border-top-color: hsl(var(--muted-foreground));
+}
+html .react-tel-input .selected-flag .arrow.up {
+  border-bottom-color: hsl(var(--muted-foreground));
+}

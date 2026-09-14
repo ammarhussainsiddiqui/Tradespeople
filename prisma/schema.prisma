@@ -1,0 +1,296 @@
+
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id                 Int                 @id @default(autoincrement())
+  profileUrl         String?
+  firstName          String?
+  lastName           String?
+  name               String?
+  username           String?
+  phone              String?
+  email              String              @unique
+  introduction       String?
+  understand         String?
+  leadUsed           Int?                @default(0)
+  remaningLeads      Int?                @default(0)
+  postcode           String?
+  trade              String?             @default("Plumbing")
+  distance           String?
+  password           String
+  customerid         String?
+  subscription       Boolean?            @default(false)
+  roleId             Int?
+  gender             String?             @default("Male")
+  isFeatured         Boolean?            @default(false)
+  rank               Int?                
+  jobs               Jobs[]
+  tradepersonDetails TradepersonDetail[]
+  tradeService       TradeService[]
+  tradeLocation      TradeLocation[]
+  quotesRequested    Quotes[]            @relation("UserQuotes")
+  quotesProvided     Quotes[]            @relation("TradepersonQuotes")
+  Subscription       Subscription[]
+  Viewed_leads       Viewed_leads[]
+  type     String    @default("Deactivate")
+  SubscriptionType Subscription_Type  @relation(fields: [type], references: [type])
+  createdAt  DateTime @default(now())
+  featuredTradesperson FeaturedTradesperson?
+
+  requestReceived        Request[]        @relation("RequestUser")
+  requestMade            Request[]        @relation("RequestTradeperson")
+
+  @@index([phone])
+}
+
+model TradepersonDetail {
+  id     Int  @id @default(autoincrement())
+
+  info   Json
+  userId Int
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model TradeService {
+  id        Int     @id @default(autoincrement())
+  serviceId Int
+  userId    Int
+
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  Service   Service @relation(fields: [serviceId], references: [id])
+  createdAt  DateTime @default(now())
+}
+
+model TradeLocation {
+  id       Int     @id @default(autoincrement())
+  postcode String
+
+  distance String?
+  userId   Int
+  user     User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+}
+
+model PostCode {
+  id   Int    @id @default(autoincrement())
+  code String @unique
+  area String
+}
+
+model MainTradeService {
+  id      Int       @id @default(autoincrement())
+  type    String    @unique
+  Service Service[]
+}
+
+model Service {
+  id           Int                @id @default(autoincrement())
+  type         String             @unique
+  MainTradeId  Int
+  questions    servicesQuestion[]
+  tradeService TradeService[]
+  mainTrade    MainTradeService   @relation(fields: [MainTradeId], references: [id], onDelete: Cascade)
+  jobs         Jobs[]
+  @@index([type]) // Optional index on type if needed
+}
+
+model servicesQuestion {
+  id        Int      @id @default(autoincrement())
+  serviceId Int
+  question  String
+  answers   String[]
+
+  service Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+
+  @@index([serviceId])
+}
+
+model OTP {
+  id          Int      @id @default(autoincrement())
+  phoneNumber String   @unique
+  otp         String
+  createdAt   DateTime @default(now())
+}
+
+model jobStatus {
+  id      Int    @id @default(autoincrement())
+  status  String @unique  // e.g., "Open", "In Progress", "Closed"
+  jobs    Jobs[] // One-to-many relation with the Jobs model
+  createdAt   DateTime @default(now())
+  @@index([status])
+}
+
+model Jobs {
+  id                     Int      @id @default(autoincrement())
+  userId                 Int
+  serviceId              Int      @default(1)
+  service                Service  @relation(fields: [serviceId], references: [id], onDelete: Cascade) // Relation to Service model
+  postcode               String?
+  job                    Json
+  user                   User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  isCompleted            Boolean  @default(false)
+  statusId               Int      @default(4)  // Foreign key to JobStatus
+  createdAt              DateTime @default(now())
+  interestedTradepersons Int[]
+  Viewed_leads           Viewed_leads[]
+  quotes                 Quotes[]
+
+  jobStatus              jobStatus @relation(fields: [statusId], references: [id])  // Relation to JobStatus
+  request                Request[] 
+
+  @@index([userId])
+}
+model Request {
+  id             Int       @id @default(autoincrement())
+  userId         Int       
+  tradepersonId  Int       
+  jobId          Int       
+  isReviewed     Boolean   @default(false) 
+  createdAt      DateTime  @default(now()) 
+
+  // Relations
+
+  job           Jobs    @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  user          User    @relation("RequestUser", fields: [userId], references: [id], onDelete: Cascade)
+  tradeperson   User    @relation("RequestTradeperson", fields: [tradepersonId], references: [id], onDelete: Cascade)
+  reviews        Reviews[] // One-to-many relation with Reviews
+
+  @@unique([userId, tradepersonId, jobId])
+
+  @@index([userId])
+  @@index([tradepersonId])
+  @@index([jobId])
+}
+
+model Reviews {
+  id          Int       @id @default(autoincrement())
+  message     String    
+  rating      Int       
+  createdAt   DateTime  @default(now()) 
+  requestId   Int       
+  reviewType String @default("user") 
+
+  // Relations
+  request     Request   @relation(fields: [requestId], references: [id], onDelete: Cascade)
+
+  @@index([requestId])
+}
+
+
+
+
+
+
+
+model Quotes {
+  id            Int     @id @default(autoincrement())
+  jobId         Int
+  userId        Int
+  tradepersonId Int
+  quotePrice    Int?
+  isViewed      Boolean @default(false)
+  requested     Boolean @default(false)
+  isAccepted    Boolean @default(false)
+
+  job           Jobs    @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  user          User    @relation("UserQuotes", fields: [userId], references: [id])
+  tradeperson   User    @relation("TradepersonQuotes", fields: [tradepersonId], references: [id])
+  createdAt  DateTime @default(now())
+}
+
+model Subscription {
+  id         Int     @id @default(autoincrement())
+  userid     Int
+  user       User    @relation(fields: [userid], references: [id], onDelete: Cascade)
+  status     String?
+  customerid String?
+  subsid     String  @unique
+  price      String?
+  createdAt  Int?
+  expiredAt  Int?
+}
+
+model Subscription_Type {
+  id         Int     @id @default(autoincrement())
+  type       String  @unique
+  leadCount  Int?
+  User       User[]
+}
+
+model Viewed_leads {
+  id         Int     @id @default(autoincrement())
+  tradepersonId       Int
+  JobId     Int
+  User      User    @relation(fields: [tradepersonId], references: [id], onDelete: Cascade)
+  job       Jobs    @relation(fields: [JobId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+}
+
+model Email_Subscribe {
+  id         Int     @id @default(autoincrement())
+  email      String  @unique
+  createdAt  DateTime @default(now())
+}
+
+
+model Announcement {
+  id          Int   @id @default(autoincrement())
+  roleId      Int?
+  title       String
+  description String
+  announcementUrl      String?
+  createdAt   DateTime @default(now())
+}
+
+
+model FeaturedTradesperson {
+  id        Int      @id @default(autoincrement())
+  userId    Int      @unique
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+}
+
+model FailedInvoice {
+  id                Int      @id @default(autoincrement())
+
+  // Stripe references
+  invoiceId         String   
+  customerId        String
+  subscriptionId    String
+
+  // Customer info
+  email             String @unique
+
+  // Invoice details
+  amountDue         Int
+  currency          String
+  status            String   // open | unpaid
+  hostedInvoiceUrl  String
+
+  // Stripe timestamps
+  stripeCreatedAt   Int      // Unix timestamp from Stripe
+
+  emailSendCount    Int @default(0)
+  lastEmailSent     DateTime?
+
+  // System timestamps
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@index([customerId])
+  @@index([subscriptionId])
+  @@index([email])
+}

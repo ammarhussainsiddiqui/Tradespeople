@@ -1,0 +1,36 @@
+/* From Uiverse.io by Yaya12085 */
+.radio-inputs {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  width: 500px;
+  font-size: 14px;
+}
+
+.radio-inputs .radio {
+  flex: 1 1 auto;
+  text-align: center;
+}
+
+.radio-inputs .radio input {
+  display: none;
+}
+
+.radio-inputs .radio .name {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  padding: .5rem 0;
+  color: hsl(var(--ink-soft));
+  transition: all .15s ease-in-out;
+}
+
+.radio-inputs .radio input:checked+.name {
+  background-color: hsl(var(--surface));
+  border-bottom: hsl(var(--success)) 2px solid;
+  color: hsl(var(--ink-strong));
+  font-weight: 500;
+}

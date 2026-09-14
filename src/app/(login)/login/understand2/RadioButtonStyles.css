@@ -1,0 +1,100 @@
+.radio-inputs {
+  max-width: 100%;
+  user-select: none;
+}
+
+.radio-input:checked+.radio-tile {
+  border-color: hsl(var(--success));
+  box-shadow: 0 5px 10px hsl(var(--shadow-soft));
+  color: hsl(var(--success));
+}
+
+.radio-input:checked+.radio-tile:before {
+  transform: scale(1);
+  opacity: 1;
+  background-color: hsl(var(--success));
+  border-color: hsl(var(--success));
+}
+
+.radio-input:checked+.radio-tile .radio-icon svg {
+  fill: hsl(var(--success));
+}
+
+.radio-input:checked+.radio-tile .radio-label {
+  color: hsl(var(--ink-strong));
+}
+
+.radio-input:focus+.radio-tile {
+  border-color: hsl(var(--success));
+  box-shadow: 0 5px 10px hsl(var(--shadow-soft)), 0 0 0 4px hsl(var(--info-soft));
+}
+
+.radio-input:focus+.radio-tile:before {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.radio-tile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2px 0px 10px 20px;
+  border-radius: 0.5rem;
+  border: 2px solid hsl(var(--neutral-300));
+  background-color: hsl(var(--surface));
+  box-shadow: 0 5px 10px hsl(var(--shadow-soft));
+  transition: 0.15s ease;
+  cursor: pointer;
+  position: relative;
+  margin: 6px;
+}
+
+.radio-tile:before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 0.75rem;
+  height: 0.75rem;
+  border: 2px solid hsl(var(--neutral-300));
+  background-color: hsl(var(--surface));
+  border-radius: 50%;
+  top: 0.90rem;
+  left: 0.25rem;
+  opacity: 0;
+  transform: scale(0);
+  transition: 0.25s ease;
+}
+
+.radio-tile:hover {
+  border-color: hsl(var(--success));
+}
+
+.radio-tile:hover:before {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.radio-icon svg {
+  width: 2rem;
+  height: 2rem;
+  fill: hsl(var(--neutral-700));
+}
+
+.radio-label {
+  color: hsl(var(--neutral-500));
+  transition: 0.375s ease;
+  text-align: left !important;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.radio-input {
+  clip: rect(0 0 0 0);
+  -webkit-clip-path: inset(100%);
+  clip-path: inset(100%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}

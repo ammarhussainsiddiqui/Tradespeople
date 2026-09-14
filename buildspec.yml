@@ -1,0 +1,61 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo NEXT_PUBLIC_POSTGRESQL_URI=${NEXT_PUBLIC_POSTGRESQL_URI} >> .env
+      - echo NEXT_STRIPE_PUBLISHABLE_KEY=${NEXT_STRIPE_PUBLISHABLE_KEY} >> .env
+      - echo NEXT_STRIPE_SECRET_KEY=${NEXT_STRIPE_SECRET_KEY} >> .env
+      - echo NEXT_STRIPE_WEBHOOK_SECRET=${NEXT_STRIPE_WEBHOOK_SECRET} >> .env
+      - echo NEXT_STRIPE_STANDARD_PRICE=${NEXT_STRIPE_STANDARD_PRICE} >> .env
+      - echo NEXT_STRIPE_GOLD_PRICE=${NEXT_STRIPE_GOLD_PRICE} >> .env
+      - echo NEXT_STRIPE_FREE_PRICE=${NEXT_STRIPE_FREE_PRICE} >> .env
+      - echo NEXT_STRIPE_PREMIUM_PRICE=${NEXT_STRIPE_PREMIUM_PRICE} >> .env
+      - echo NEXT_BASE_URL=${NEXT_BASE_URL} >> .env
+      - echo AWS_REGION=${AWS_REGION} >> .env
+      - echo AWS_BUCKET_NAME=${AWS_BUCKET_NAME} >> .env
+      - echo AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} >> .env
+      - echo AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} >> .env
+      - echo AWS_S3_BASE_URL=${AWS_S3_BASE_URL} >> .env
+      - echo NEXT_PUBLIC_STRIPE_STANDARD_PRICE=${NEXT_PUBLIC_STRIPE_STANDARD_PRICE} >> .env
+      - echo NEXT_PUBLIC_STRIPE_GOLD_PRICE=${NEXT_PUBLIC_STRIPE_GOLD_PRICE} >> .env
+      - echo NEXT_PUBLIC_STRIPE_FREE_PRICE=${NEXT_PUBLIC_STRIPE_FREE_PRICE} >> .env
+      - echo NEXT_PUBLIC_STRIPE_PREMIUM_PRICE=${NEXT_PUBLIC_STRIPE_PREMIUM_PRICE} >> .env
+      - echo NEXT_PUBLIC_STRIPE_SECRET_KEY=${NEXT_PUBLIC_STRIPE_SECRET_KEY} >> .env
+      - echo DELETED_STATUS_ID=${DELETED_STATUS_ID} >> .env
+      - echo INPROGRESS_STATUS_ID=${INPROGRESS_STATUS_ID} >> .env
+      - echo ONHOLD_STATUS_ID=${ONHOLD_STATUS_ID} >> .env
+      - echo STOPPED_STATUS_ID=${STOPPED_STATUS_ID} >> .env
+      - echo CLOSED_STATUS_ID=${CLOSED_STATUS_ID} >> .env
+      - echo REOPENED_STATUS_ID=${REOPENED_STATUS_ID} >> .env
+      - echo OPENED_STATUS_ID=${OPENED_STATUS_ID} >> .env
+      - echo NEXT_PUBLIC_NEXTAUTH_URL=${NEXT_PUBLIC_NEXTAUTH_URL} >> .env
+      - echo NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL} >> .env
+      - echo NEXT_PUBLIC_URL=${NEXT_PUBLIC_URL} >> .env
+      - echo NEXT_PUBLIC_JWT_SECRET=${NEXT_PUBLIC_JWT_SECRET} >> .env
+      - echo NEXT_PUBLIC_ACC_SID=${NEXT_PUBLIC_ACC_SID} >> .env
+      - echo NEXT_PUBLIC_ACC_AUTH=${NEXT_PUBLIC_ACC_AUTH} >> .env
+      - echo NEXT_PUBLIC_ACC_NUMBER=${NEXT_PUBLIC_ACC_NUMBER} >> .env
+      - echo NEXT_PUBLIC_NODEMAILER_PASS=${NEXT_PUBLIC_NODEMAILER_PASS} >> .env
+      - echo NEXT_PUBLIC_NODEMAILER_USER=${NEXT_PUBLIC_NODEMAILER_USER} >> .env
+  install:
+    runtime-versions:
+      nodejs: 20
+    commands:
+      # - echo "Installing dependencies..."
+      # - sudo npm install
+  build:
+    commands:
+      # - echo "Building the Next.js app..."
+      # - sudo npm run build
+  post_build:
+    commands:
+      # - echo "Restarting PM2 server..."
+      # - pm2 restart 6
+      # - npm run export
+      - echo "Build phase completed successfully."
+
+artifacts:
+  files:
+    - '**/*'
+  # base-directory: out # Use 'out' for static export. Use '.next' for server-rendered apps.
