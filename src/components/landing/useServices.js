@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 // Fired by trade chips and featured-tradesperson cards; the hero search listens
 // and pre-selects that trade.
-export const SELECT_SERVICE_EVENT = 'ttc:select-service';
+export const SELECT_SERVICE_EVENT = 'tp:select-service';
 
 // One shared request for every landing-page component that needs the trade list.
 let servicesPromise;

@@ -641,7 +641,7 @@ const LeadsSettingsSection = ({ setCompleted }) => {
                       type="text"
                       value={searchTerm}
                       onChange={handleSearchChange}
-                      placeholder="Type in the service you wouldÂ likeÂ toÂ add"
+                      placeholder="Type in the service you would like to add"
                       className="w-full px-4 py-4 text-xs border-none focus:ring-0 middle bg-neutral-100 rounded-lg"
                       onFocus={() => setShowDropdown(true)}
                       onBlur={handleBlur}
@@ -979,7 +979,7 @@ const LeadsSettingsSection = ({ setCompleted }) => {
         <section>
           <h3 className="text-xl font-semibold">Your Location</h3>
           <span className="text-xs mb-4 block">
-            Select the areas where youâ€™d like to attract new customers. You can add multiple locations,Â oneÂ atÂ aÂ time.
+            Select the areas where you’d like to attract new customers. You can add multiple locations, one at a time.
           </span>
           <section className="grid grid-cols-1 md:grid-cols-2">
             <div className="space-y-2">

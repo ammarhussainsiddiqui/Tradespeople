@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 import authenticateToken from "../../authenticateToken";
 import * as Sentry from "@sentry/nextjs";
 const prisma = new PrismaClient();
-const JWT_SECRET = process.env.NEXT_PUBLIC_JWT_SECRET;
+const JWT_SECRET = (process.env.JWT_SECRET || process.env.NEXT_PUBLIC_JWT_SECRET);
 
 export async function POST(request) {
   const authHeader = request.headers.get("authorization");

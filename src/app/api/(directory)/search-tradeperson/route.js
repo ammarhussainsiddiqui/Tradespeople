@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 const prisma = new PrismaClient();
 
 const corsHeaders = {
-  "Access-Control-Allow-Origin": "https://thetradecore.com",
+  "Access-Control-Allow-Origin": "https://tradepeople.co.uk",
   "Access-Control-Allow-Credentials": "true",
   "Access-Control-Allow-Methods": "GET, POST, DELETE, OPTIONS",
   "Access-Control-Allow-Headers":

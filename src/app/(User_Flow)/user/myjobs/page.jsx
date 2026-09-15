@@ -180,7 +180,7 @@ const Page = () => {
             </p>
             <p className="md:text-sm text-[14px]">
               At this point you are not able to edit the existing posted job.
-              However, you can delete them and post anotherÂ JobÂ for
+              However, you can delete them and post another Job for
               <strong>FREE</strong>.
             </p>
           </>
@@ -248,10 +248,10 @@ const Page = () => {
                   </div>
                 </div>
                 <h2 className="text-xl font-semibold mb-2">
-                  Job's not available Create Post a new job.
+                  No jobs yet. Post a new job to get started.
                 </h2>
                 <p className="text-muted-foreground mb-4">
-                  You need to create new job's,
+                  You haven’t posted any jobs.
                 </p>
               </div>
             </div>

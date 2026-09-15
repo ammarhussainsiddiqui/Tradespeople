@@ -189,7 +189,7 @@ const Page = () => {
               </div>
               <div className="relative flex text-ink-inverse items-center bg-accent font-semibold text-2xl rounded-md px-3 py-2 md:w-52 w-full">
                 <i className='text-ink-inverse'>Per Hour &nbsp;&nbsp;</i>
-                <span className="text-ink-inverse">â‚¬</span>
+                <span className="text-ink-inverse">€</span>
                 {lead?.quotePrice}
               </div>
 
@@ -199,7 +199,7 @@ const Page = () => {
               <div className="flex flex-col md:flex-row md:items-center">
                 <span className="font-semibold text-xl md:text-2xl text-neutral-800 md:mr-5 mb-3 md:mb-0">Quote your price <span className="text-accent text-sx ml-2"><i>Per Hour</i></span></span>
                 <div className="relative flex items-center bg-neutral-100 rounded-md px-3 py-2 md:w-60 w-full">
-                  <span className="text-muted-foreground">â‚¬</span>
+                  <span className="text-muted-foreground">€</span>
                   <input
                     id='price'
                     type="number"

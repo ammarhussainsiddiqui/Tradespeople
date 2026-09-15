@@ -611,14 +611,14 @@ const Page = () => {
                   </button>
                   <div className="flex my-auto">
                     <h2 className="md:text-2xl text-lg font-bold mb-4 mt-4">
-                      Leads : âˆž /
+                      Leads : ∞ /
                       {/* {totslLead - leadCount}/ */}
                     </h2>
                     <h2
                       style={{ marginTop: "auto" }}
                       className="text-md font-bold text-foreground mb-4 mt-4"
                     >
-                      âˆž
+                      ∞
                       {/* {totslLead} */}
                     </h2>
                   </div>
@@ -634,13 +634,13 @@ const Page = () => {
                 </button>
                 <div className="flex my-auto">
                   <h2 className="md:text-2xl text-md font-bold mb-4 mt-4">
-                    Leads : âˆž /
+                    Leads : ∞ /
                     {/* {totslLead - leadCount}/ */}
                   </h2>
                   <h2
                     style={{ marginTop: "auto" }}
                     className="text-sm font-bold text-foreground mb-4 mt-4"
-                  >âˆž
+                  >∞
                     {/* {totslLead} */}
                   </h2>
                 </div>
@@ -1669,7 +1669,7 @@ const Page = () => {
                               onClick={() => paginate(currentPage - 1)}
                               disabled={currentPage === 1}
                             >
-                              â†
+                              ←
                             </button>
 
                             {/* Page buttons (limited to 3 at a time) */}
@@ -1701,7 +1701,7 @@ const Page = () => {
                               onClick={() => paginate(currentPage + 1)}
                               disabled={currentPage === totalPages}
                             >
-                              â†’
+                              →
                             </button>
                           </div>
                         </div>

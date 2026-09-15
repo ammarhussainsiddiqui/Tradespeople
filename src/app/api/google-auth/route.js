@@ -1,22 +1,25 @@
 
 import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
-import authenticateToken from '../../authenticateToken';
 import * as Sentry from '@sentry/nextjs';
+import { verifyGoogleCredential } from '../../../lib/auth/google';
 
 const prisma = new PrismaClient();
 
 export async function POST(request) {
-    
+
     try {
-        // Parse the email from the request body
-        const { email, firstName, lastName, profilePicture  } = await request.json();
-        if (!email) {
+        // Identity comes from the Google ID token verified here, never from the
+        // request body, so nobody can sign in as someone else by sending their email.
+        const { credential } = await request.json();
+        const googleUser = await verifyGoogleCredential(credential);
+        if (!googleUser) {
             return NextResponse.json({
                 success: false,
-                message: 'Email is required.',
-            }, { status: 400 });
+                message: 'Google sign-in could not be verified. Please try again.',
+            }, { status: 401 });
         }
+        const { email, firstName, lastName, profilePicture } = googleUser;
 
         // Check if the user already exists using Prisma
         const existingUser = await prisma.user.findUnique({
@@ -25,9 +28,9 @@ export async function POST(request) {
 
         if (existingUser) {
             // If user exists, return userId and password
-            return NextResponse.json({ 
-                success: true, 
-                message: 'User already exists', 
+            return NextResponse.json({
+                success: true,
+                message: 'User already exists',
                 userId: existingUser.id,
                 password: existingUser.password,  // Return the password for login
                 email
@@ -35,7 +38,7 @@ export async function POST(request) {
         }
 
         // If user doesn't exist, create a new user with a default password
-        
+
         const newUser = await prisma.user.create({
             data: {
                 name:'unknown',
@@ -49,9 +52,9 @@ export async function POST(request) {
             },
         });
 
-        return NextResponse.json({ 
-            success: true, 
-            message: 'User registered successfully', 
+        return NextResponse.json({
+            success: true,
+            message: 'User registered successfully',
             userId: newUser.id,
             password: newUser.password, // Return the password for login
             email
@@ -59,9 +62,9 @@ export async function POST(request) {
 
     } catch (error) {
         Sentry.captureException('Error:', error);
-        return NextResponse.json({ 
-            success: false, 
-            message: 'Internal server error.' 
+        return NextResponse.json({
+            success: false,
+            message: 'Internal server error.'
         }, { status: 500 });
     }
 }

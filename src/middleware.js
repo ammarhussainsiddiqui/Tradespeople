@@ -1,60 +1,47 @@
 import { NextResponse } from 'next/server';
 import { jwtVerify } from 'jose';
-import { cookies } from 'next/headers';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'aasdnksadnska87t8sdysv';
-const jwtConfig = {
-    secret: new TextEncoder().encode(JWT_SECRET),
-};
+const PROTECTED_PREFIXES = ['/user', '/tradesperson'];
+
+// Lead links are shared in emails and messaging apps, whose link-preview crawlers
+// need the page's Open Graph tags. The page layout still requires a login.
+const PUBLIC_PATHS = ['/tradesperson/leads'];
+
+const matchesPrefix = (path, prefix) => path === prefix || path.startsWith(`${prefix}/`);
 
 export default async function middleware(req) {
     const path = req.nextUrl.pathname;
-    
+
     if (path.startsWith('/api')) {
         return NextResponse.next();
     }
 
-    // const token = req.cookies.get('jwt')?.value;
+    const isProtected =
+        PROTECTED_PREFIXES.some((prefix) => matchesPrefix(path, prefix)) &&
+        !PUBLIC_PATHS.some((prefix) => matchesPrefix(path, prefix));
 
-    // if (!token) {
-    //     console.log("No token found, redirecting to /login" + token);
-    //     return NextResponse.redirect(new URL('/login', req.url));
-    // }
+    if (!isProtected) {
+        return NextResponse.next();
+    }
 
-    // try {
-    //     const decodedToken = (await jwtVerify(token, jwtConfig.secret)).payload;
+    // Role-based redirects stay in the (User_Flow) and (Tradesperson) layouts;
+    // this only stops pages rendering for visitors without a valid session.
+    const token = req.cookies.get('jwt')?.value;
+    const secret = process.env.JWT_SECRET || process.env.NEXT_PUBLIC_JWT_SECRET;
 
-    //     const currentTime = Math.floor(Date.now() / 1000);
+    if (token && secret) {
+        try {
+            await jwtVerify(token, new TextEncoder().encode(secret));
+            return NextResponse.next();
+        } catch {
+            // Forged or expired: fall through to the login redirect
+        }
+    }
 
-    //     if (decodedToken.exp < currentTime) {
-    //         console.log("Token expired, redirecting to /login");
-    //         cookies().delete("jwt");
-            
-    //         return NextResponse.redirect(new URL('/login', req.url));
-    //     }
-
-    //     console.log(`Current path: ${path}`);
-
-    //     // Redirect based on role
-    //     if (decodedToken.role === 1) {
-    //         if (!path.startsWith('/user')) {
-    //             return NextResponse.redirect(new URL('/user', req.url));
-    //         }
-    //     } else if (decodedToken.role === 2) {
-    //         if (!path.startsWith('/tradesperson')) {
-    //             return NextResponse.redirect(new URL('/tradesperson', req.url));
-    //         }
-    //     } else if (decodedToken.role === 3) {
-    //         if (!path.startsWith('/admin')) {
-    //             return NextResponse.redirect(new URL('/admin', req.url));
-    //         }
-    //     } 
-    // } catch (err) {
-    //     console.error("JWT verification failed:", err);
-    //     return NextResponse.redirect(new URL('/login', req.url));
-    // }
-
-    return NextResponse.next();
+    const response = NextResponse.redirect(new URL('/login', req.url));
+    response.cookies.delete('jwt');
+    response.cookies.delete('user');
+    return response;
 }
 
 export const config = {

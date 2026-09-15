@@ -131,7 +131,7 @@ const Page = () => {
                       <div className="flex-1 mb-4 md:mb-0">
                         <h3 className="text-lg font-semibold">{quote?.servicedata || 'Service Request'} <i className='text-success'>{quote?.isAccepted ? '( Accepted )' : ''}</i></h3>
                         <p className="text-sm text-muted-foreground">
-                          Requested By â€¢ {quote?.user?.firstName} {quote?.user?.lastName}
+                          Requested By • {quote?.user?.firstName} {quote?.user?.lastName}
                         </p>
                         <div className="flex flex-wrap items-center space-x-4 mt-2 text-sm">
                           <div className="flex items-center space-x-1">

@@ -1,10 +1,13 @@
 // app/api/images/route.js
 import { NextResponse } from "next/server";
-import { S3Client, GetObjectCommand, PutObjectCommand, DeleteObjectCommand } from "@aws-sdk/client-s3";
+import { S3Client, GetObjectCommand, DeleteObjectCommand } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { v4 as uuidv4 } from "uuid"; // To generate unique file names
 import { Upload } from '@aws-sdk/lib-storage';
 import * as Sentry from '@sentry/nextjs';
+import { forbidden, getRequestUser, unauthorized } from "../../../lib/auth/session";
+
+const ADMIN_ROLE = 3;
 
 // Initialize S3 client with credentials and region
 const s3 = new S3Client({
@@ -36,6 +39,10 @@ export async function GET() {
 }
 
 export async function POST(req) {
+    // Only logged-in users can upload
+    const user = await getRequestUser(req);
+    if (!user) return unauthorized();
+
     try {
         // Read the file from the request
         const formData = await req.formData();
@@ -80,11 +87,16 @@ export async function POST(req) {
         return NextResponse.json({ message: "Files uploaded successfully", uploadedFiles });
     } catch (error) {
         Sentry.captureException("Error uploading files:", error);
-        return NextResponse.json({ error: "Error uploading files", details: error.message }, { status: 500 });
+        return NextResponse.json({ error: "Error uploading files" }, { status: 500 });
     }
 }
 
 export async function DELETE(req) {
+    // Deleting arbitrary bucket objects is admin-only; nothing in the app calls this
+    const user = await getRequestUser(req);
+    if (!user) return unauthorized();
+    if (user.role !== ADMIN_ROLE) return forbidden();
+
     try {
         const { searchParams } = new URL(req.url);
         const fileName = searchParams.get("fileName"); // Get the file name from query parameters
@@ -104,9 +116,6 @@ export async function DELETE(req) {
         return NextResponse.json({ message: "File deleted successfully" });
     } catch (error) {
         Sentry.captureException("Error deleting file:", error);
-        return NextResponse.json({ error: "Error deleting file", details: error.message }, { status: 500 });
+        return NextResponse.json({ error: "Error deleting file" }, { status: 500 });
     }
 }
-
-
-

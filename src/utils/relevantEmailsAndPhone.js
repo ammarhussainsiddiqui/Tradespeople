@@ -7,7 +7,7 @@ import * as Sentry from '@sentry/nextjs';
 const prisma = new PrismaClient();
 
 const accountSid = process.env.NEXT_PUBLIC_ACC_SID; // SID
-const authToken = process.env.NEXT_PUBLIC_ACC_AUTH; // Twilio auth token
+const authToken = (process.env.TWILIO_AUTH_TOKEN || process.env.NEXT_PUBLIC_ACC_AUTH); // Twilio auth token
 
 function getLabelsByValue(array, targetValue) {
   // Filter the array to find objects where the value matches the targetValue
@@ -192,7 +192,7 @@ export async function sendEmailToRelevantUsers(
   jobId
 ) {
   const USER = process.env.NEXT_PUBLIC_NODEMAILER_USER;
-  const PASS = process.env.NEXT_PUBLIC_NODEMAILER_PASS;
+  const PASS = (process.env.NODEMAILER_PASS || process.env.NEXT_PUBLIC_NODEMAILER_PASS);
 
   try {
     // Configure nodemailer service
@@ -225,12 +225,12 @@ export async function sendEmailToRelevantUsers(
                     <li><strong>Description:</strong> ${jobDescription}</li>
                 </ul>
                 <p style="font-size: 18px; color: ${EMAIL_THEME.text}; margin-top: 20px;">
-                    <a href="https://app.thetradecore.com/tradesperson/leads?jobid=${jobId}" style="color: ${EMAIL_THEME.accent}; text-decoration: none;">Click here</a> to see all the details of this job.
+                    <a href="https://app.tradepeople.co.uk/tradesperson/leads?jobid=${jobId}" style="color: ${EMAIL_THEME.accent}; text-decoration: none;">Click here</a> to see all the details of this job.
                 </p>
             </div>
             <div style="margin-top: 30px; padding: 10px; border-top: 1px solid ${EMAIL_THEME.accent};">
                 <p style="font-size: 12px; color: ${EMAIL_THEME.mutedText};">© 2024. All rights reserved.</p>
-                <p style="font-size: 12px; color: ${EMAIL_THEME.mutedText};">Visit us at <a href="https://thetradecore.com" style="color: ${EMAIL_THEME.accent}; text-decoration: none;">thetradecore.com</a></p>
+                <p style="font-size: 12px; color: ${EMAIL_THEME.mutedText};">Visit us at <a href="https://tradepeople.co.uk" style="color: ${EMAIL_THEME.accent}; text-decoration: none;">tradepeople.co.uk</a></p>
             </div>
           </div>
         `,
@@ -278,7 +278,7 @@ Job Details:
 - Postcode: ${postcode}
 - Description: ${jobDescription}
 
-Click here to see all the details of this job : https://app.thetradecore.com/tradesperson/leads?jobid=${jobId}
+Click here to see all the details of this job : https://app.tradepeople.co.uk/tradesperson/leads?jobid=${jobId}
 
 $1`;
 

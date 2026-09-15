@@ -307,9 +307,9 @@ const Page = () => {
           <>
             <div className='flex justify-between w-full md:text-center'>
               {currentStep == 2 ?
-                <h2 className="font-semibold mt-4 text-2xl md:text-center text-ink-soft w-full">You're almost there!</h2>
+                <h2 className="font-semibold mt-4 text-2xl md:text-center text-ink-soft w-full">You’re almost there!</h2>
                 :
-                <h2 className="font-semibold mt-4 text-2xl md:text-center text-ink-soft w-full" >Weâ€™d love to get to know you!</h2>
+                <h2 className="font-semibold mt-4 text-2xl md:text-center text-ink-soft w-full" >We’d love to get to know you!</h2>
               }
 
             </div>

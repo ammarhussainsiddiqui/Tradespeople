@@ -35,7 +35,6 @@ import {
 import Notification from "../../components/(Tradesperson)/Notification";
 import Image from "next/image";
 import Logomark from "../layout/Logomark";
-import Logo from "../../app/assets/logo.webp";
 import { getUserDetails, logout } from "../../actions/auth";
 import { useRouter } from "next/navigation";
 import Spinner from "../Spinner";
@@ -827,7 +826,7 @@ const Navbar = () => {
                           style={{ justifyContent: "center" }}
                           className="flex text-xs text-center item-center text-muted-foreground font-normal ml-auto cursor-pointer"
                         >
-                          Didnâ€™t receive the code?{" "}
+                          Didn’t receive the code?{" "}
                           <b>
                             <svg
                               style={{ marginTop: "2px", marginLeft: "10px" }}
@@ -862,7 +861,7 @@ const Navbar = () => {
                                 className="text-xs text-center text-muted-foreground font-normal cursor-pointer"
                                 onClick={resendCode}
                               >
-                                Didnâ€™t receive the code?{" "}
+                                Didn’t receive the code?{" "}
                                 <b>
                                   <u>Resend Code</u>
                                 </b>
@@ -1185,9 +1184,11 @@ const Navbar = () => {
             </button>
           </div>
         </div>
+        {/* Viewport-sized clip so the off-screen drawer can't widen the page on mobile. */}
+        <div className="fixed inset-0 z-20 overflow-hidden pointer-events-none md:hidden">
         <div
-          className={`fixed z-20 top-0 right-0 h-full w-full bg-secondary shadow-2xl rounded-lg transform ${isOpen ? "translate-x-0" : "translate-x-full"
-            } transition-transform duration-300 ease-in-out md:hidden`}
+          className={`absolute inset-0 bg-secondary shadow-2xl rounded-lg transform pointer-events-auto ${isOpen ? "translate-x-0" : "translate-x-full invisible"
+            } transition-[transform,visibility] duration-300 ease-in-out`}
         >
           <div className="flex justify-between">
             <div className="p-4 text-lg font-semibold">
@@ -1326,7 +1327,7 @@ const Navbar = () => {
                 </a>
               )}
               <Link
-                href={`https://thetradecore.com/help-center/`}
+                href={`https://tradepeople.co.uk/help-center/`}
                 target="_blank"
                 className="block px-4 py-2  font-bold text-[17px]  text-foreground "
               >
@@ -1350,6 +1351,7 @@ const Navbar = () => {
               </div>
             </div>
           )}
+        </div>
         </div>
       </nav>
       <EmailChangeDialog

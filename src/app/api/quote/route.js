@@ -86,7 +86,7 @@ export async function GET(request) {
 }
 
 const accountSid = process.env.NEXT_PUBLIC_ACC_SID; // SID
-const authToken = process.env.NEXT_PUBLIC_ACC_AUTH; // Twilio auth token
+const authToken = (process.env.TWILIO_AUTH_TOKEN || process.env.NEXT_PUBLIC_ACC_AUTH); // Twilio auth token
 
 const sendEmailForUser = async (
   tradePersonName,
@@ -97,9 +97,9 @@ const sendEmailForUser = async (
   lastName,
   jobId
 ) => {
-  const url = `https://app.thetradecore.com/tradesperson/leads?jobid=${jobId}`
+  const url = `https://app.tradepeople.co.uk/tradesperson/leads?jobid=${jobId}`
   const USER = process.env.NEXT_PUBLIC_NODEMAILER_USER;
-  const PASS = process.env.NEXT_PUBLIC_NODEMAILER_PASS;
+  const PASS = (process.env.NODEMAILER_PASS || process.env.NEXT_PUBLIC_NODEMAILER_PASS);
 
   try {
     // Configure nodemailer service
@@ -137,7 +137,7 @@ const sendEmailForUser = async (
     //             </p>
     //             <div style="margin-top: 20px; padding: 10px; border-top: 1px solid ${EMAIL_THEME.border};">
     //                 <p style="font-size: 12px; color: ${EMAIL_THEME.mutedText};">© 2024. All rights reserved.</p>
-    //                 <p style="font-size: 12px; color: ${EMAIL_THEME.mutedText};">Visit us at <a href="https://thetradecore.com" style="color: ${EMAIL_THEME.accent}; text-decoration: none;">thetradecore.com</a></p>
+    //                 <p style="font-size: 12px; color: ${EMAIL_THEME.mutedText};">Visit us at <a href="https://tradepeople.co.uk" style="color: ${EMAIL_THEME.accent}; text-decoration: none;">tradepeople.co.uk</a></p>
     //             </div>
     //         </div>
     //     `,
@@ -176,7 +176,7 @@ const sendEmailForUser = async (
                   <div style="margin-top: 20px; padding: 15px; border-top: 1px solid ${EMAIL_THEME.accent};">
                       <p style="font-size: 12px; color: ${EMAIL_THEME.mutedText}; text-align: center;">© 2024. All rights reserved.</p>
                       <p style="font-size: 12px; color: ${EMAIL_THEME.mutedText}; text-align: center;">
-                          Visit us at <a href="https://thetradecore.com" style="color: ${EMAIL_THEME.surfaceText}; text-decoration: none; border-bottom: 1px dotted ${EMAIL_THEME.accent};">thetradecore.com</a>
+                          Visit us at <a href="https://tradepeople.co.uk" style="color: ${EMAIL_THEME.surfaceText}; text-decoration: none; border-bottom: 1px dotted ${EMAIL_THEME.accent};">tradepeople.co.uk</a>
                       </p>
                   </div>
               </div>
@@ -290,7 +290,7 @@ ${Object.entries(updatedQuote?.job?.job)
   `)
   .join("\n")}
 
-To view and manage this lead, visit your dashboard: https://app.thetradecore.com/tradesperson/leads?jobid=${jobId}
+To view and manage this lead, visit your dashboard: https://app.tradepeople.co.uk/tradesperson/leads?jobid=${jobId}
 
 Please reach out to ${updatedQuote?.user?.firstName || "there"} ${updatedQuote?.user?.lastName || ""} at your earliest convenience to discuss their requirements.
 `;
@@ -357,7 +357,7 @@ ${Object.entries(newQuote?.job?.job)
                               `)
                               .join("\n")}
 
-To view and manage this lead, visit your dashboard: https://app.thetradecore.com/tradesperson/leads?jobid=${jobId}
+To view and manage this lead, visit your dashboard: https://app.tradepeople.co.uk/tradesperson/leads?jobid=${jobId}
 
 Please reach out to ${newQuote?.user?.firstName || "there"} ${newQuote?.user?.lastName || ""
 } at your earliest convenience to discuss their requirements.

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import TradepersonsSubscription from '../../../../components/(Tradesperson)/Subscription'
 import { getUserDetails } from '../../../../actions/auth'
 
-const page = () => {
+const SubscriptionPage = () => {
   const [SubscriptionType, SetSubscriptionType] = useState("");
   const [remainingLeads, setRemainingLeads] = useState(0)
   const [subscriptionEndTime, setSubscriptionEndTime] = useState(null)
@@ -109,4 +109,4 @@ const page = () => {
   )
 }
 
-export default page
+export default SubscriptionPage

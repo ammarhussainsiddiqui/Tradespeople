@@ -5,8 +5,8 @@ const prisma = new PrismaClient();
 import jwt from "jsonwebtoken";
 import authenticateToken from '../../authenticateToken';
 
-const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
-const JWT_SECRET = process.env.NEXT_PUBLIC_JWT_SECRET;
+const stripe = new Stripe((process.env.STRIPE_SECRET_KEY || process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY));
+const JWT_SECRET = (process.env.JWT_SECRET || process.env.NEXT_PUBLIC_JWT_SECRET);
 
 export async function POST(request) {
   const authHeader = request.headers.get('authorization');

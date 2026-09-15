@@ -289,7 +289,7 @@ const LeadDetailsMob = ({
 
                             <div className="flex items-center gap-2 mb-1 group">
                               <a
-                                href={`mailto:${user?.email}?subject=${lead?.serviceType}%20Assistance%20Inquiry&body=Hey%20there,%20I’ve%20just%20seen%20your%20job%20request%20that%20was%20posted%20on%20the%20TradeCore%20website.%20If%20you%20still%20need%20this%20job%20to%20complete,%20I%20can%20come%20and%20quote%20at%20a%20time%20that%20is%20convenient%20to%20you.%20I%20look%20forward%20to%20hearing%20from%20you.%0AThanks!`}
+                                href={`mailto:${user?.email}?subject=${lead?.serviceType}%20Assistance%20Inquiry&body=Hey%20there,%20I’ve%20just%20seen%20your%20job%20request%20that%20was%20posted%20on%20the%20TradePeople%20website.%20If%20you%20still%20need%20this%20job%20to%20complete,%20I%20can%20come%20and%20quote%20at%20a%20time%20that%20is%20convenient%20to%20you.%20I%20look%20forward%20to%20hearing%20from%20you.%0AThanks!`}
 
                                 className="flex items-center gap-2 w-full"
                               >
@@ -340,7 +340,7 @@ const LeadDetailsMob = ({
                             <div className="flex items-center gap-2 mb-1 group">
 
                               <a
-                                href={`https://wa.me/${user?.phone}?text=Hey%20there,%20I’ve%20just%20seen%20your%20job%20request%20that%20was%20posted%20on%20the%20TradeCore%20website.%20If%20you%20still%20need%20this%20job%20to%20complete,%20I%20can%20come%20and%20quote%20at%20a%20time%20that%20is%20convenient%20to%20you.%20I%20look%20forward%20to%20hearing%20from%20you.%0AThanks!`}
+                                href={`https://wa.me/${user?.phone}?text=Hey%20there,%20I’ve%20just%20seen%20your%20job%20request%20that%20was%20posted%20on%20the%20TradePeople%20website.%20If%20you%20still%20need%20this%20job%20to%20complete,%20I%20can%20come%20and%20quote%20at%20a%20time%20that%20is%20convenient%20to%20you.%20I%20look%20forward%20to%20hearing%20from%20you.%0AThanks!`}
 
                                 className="text-foreground flex items-center gap-2 w-full"
                               >

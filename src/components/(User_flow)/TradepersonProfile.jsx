@@ -71,9 +71,6 @@ const TradespersonProfile = ({ profile, activeTab }) => {
 
   const [reviews, setReviews] = useState([]);
   const [loadingReviews, setLoadingReviews] = useState(false);
-  if (!profile) {
-    return <div>Loading...</div>; // Add a loading state or message if profile is not yet available
-  }
 
   const [status, SetStatus] = useState(profile?.quote?.requested);
   const [isViewed, setIsViewed] = useState(profile?.quote?.isViewed);
@@ -143,6 +140,11 @@ const TradespersonProfile = ({ profile, activeTab }) => {
       setLoadingReviews(false);
     }
   };
+
+  // After every hook, so hooks run in the same order whether or not the profile has loaded
+  if (!profile) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>

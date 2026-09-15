@@ -6,9 +6,9 @@ import authenticateToken from '../../authenticateToken';
 import * as Sentry from '@sentry/nextjs';
 export async function POST(request) {
 
-    const JWT_SECRET = process.env.NEXT_PUBLIC_JWT_SECRET;
+    const JWT_SECRET = (process.env.JWT_SECRET || process.env.NEXT_PUBLIC_JWT_SECRET);
     const USER = process.env.NEXT_PUBLIC_NODEMAILER_USER;
-    const PASS = process.env.NEXT_PUBLIC_NODEMAILER_PASS;
+    const PASS = (process.env.NODEMAILER_PASS || process.env.NEXT_PUBLIC_NODEMAILER_PASS);
     const authHeader = request.headers.get('authorization');
     const token = authHeader && authHeader.split(' ')[1];
     const authResult = await authenticateToken(token);
@@ -59,7 +59,7 @@ export async function POST(request) {
                 </div>
                 <div style="margin-top: 30px; padding: 10px; border-top: 1px solid ${EMAIL_THEME.accent};">
                     <p style="font-size: 12px; color: ${EMAIL_THEME.mutedText};">© 2024. All rights reserved.</p>
-                    <p style="font-size: 12px; color: ${EMAIL_THEME.mutedText};">Visit us at <a href="https://thetradecore.com" style="color: ${EMAIL_THEME.accent}; text-decoration: none;">thetradecore.com</a></p>
+                    <p style="font-size: 12px; color: ${EMAIL_THEME.mutedText};">Visit us at <a href="https://tradepeople.co.uk" style="color: ${EMAIL_THEME.accent}; text-decoration: none;">tradepeople.co.uk</a></p>
                 </div>
                 </div>
             `,

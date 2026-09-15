@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
+import { forbidden, getRequestUser, unauthorized } from "../../../lib/auth/session";
 
 const prisma = new PrismaClient();
 
@@ -9,6 +10,19 @@ function getUserIdFromUrl(req) {
   return parseInt(id);
 }
 
+// Changes are limited to the logged-in tradesperson's own links.
+async function authorizeOwner(req) {
+  const userId = getUserIdFromUrl(req);
+  if (!userId) return { error: NextResponse.json({ error: "Missing id" }, { status: 400 }) };
+
+  const user = await getRequestUser(req);
+  if (!user) return { error: unauthorized() };
+  if (user.id !== userId) return { error: forbidden() };
+
+  return { userId };
+}
+
+// Social links are shown on public profiles, so reading them stays open.
 export async function GET(req) {
   const userId = getUserIdFromUrl(req);
   if (!userId) return NextResponse.json({ error: "Missing id" }, { status: 400 });
@@ -24,10 +38,15 @@ export async function GET(req) {
 }
 
 export async function POST(req) {
-  const userId = getUserIdFromUrl(req);
-  if (!userId) return NextResponse.json({ error: "Missing id" }, { status: 400 });
+  const { userId, error } = await authorizeOwner(req);
+  if (error) return error;
 
   const { name, icon, link } = await req.json();
+
+  // Only web links, so a saved link can't be a javascript: URL
+  if (typeof link !== "string" || !/^https?:\/\/\S+$/i.test(link)) {
+    return NextResponse.json({ error: "Invalid link" }, { status: 400 });
+  }
 
   let detail = await prisma.tradepersonDetail.findFirst({ where: { userId } });
 
@@ -63,14 +82,15 @@ export async function POST(req) {
 
 
 export async function DELETE(req) {
-  const userId = getUserIdFromUrl(req);
-  if (!userId) return NextResponse.json({ error: "Missing id" }, { status: 400 });
+  const { userId, error } = await authorizeOwner(req);
+  if (error) return error;
 
   const { name } = await req.json();
 
   const detail = await prisma.tradepersonDetail.findFirst({ where: { userId } });
+  if (!detail) return NextResponse.json({ message: "Deleted", links: [] });
 
-  let info = detail?.info || {};
+  let info = detail.info || {};
   let socialLinks = info.socialLinks || [];
 
   socialLinks = socialLinks.filter((item) => item.name !== name);

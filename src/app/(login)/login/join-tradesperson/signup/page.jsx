@@ -83,14 +83,14 @@ const Page = () => {
     setIsPending(true);
     const token = await generateToken();
     try {
-      const { tokenId: id_token } = response;
+      const { credential } = response;
       const apiResponse = await fetch("/api/google-auth", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           'Authorization': `Bearer ${token}`,
         },
-        body: JSON.stringify({ id_token }),
+        body: JSON.stringify({ credential }),
       });
 
       const data = await apiResponse.json();

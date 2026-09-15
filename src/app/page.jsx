@@ -7,7 +7,7 @@ import BrowseByTrade from '../components/landing/PopularTrades';
 import { AreasCovered, HowItWorks, TradespersonBand } from '../components/landing/LandingSections';
 import { updatedAreaSegments } from '../actions/auth';
 
-const TITLE = 'Find & Hire Trusted Local Tradespeople | The Trade Core';
+const TITLE = 'Find & Hire Trusted Local Tradespeople | TradePeople';
 const DESCRIPTION =
   'Post your job for free and hear from screened, reviewed tradespeople who cover your postcode. No obligation to hire.';
 
@@ -20,10 +20,10 @@ export const metadata = {
     url: `${process.env.NEXT_BASE_URL}/`,
     images: [
       {
-        url: `${process.env.NEXT_BASE_URL}/images/logo.webp`,
-        width: 1200,
-        height: 630,
-        alt: 'The Trade Core',
+        url: `${process.env.NEXT_BASE_URL}/images/tradepeople-logo.png`,
+        width: 1920,
+        height: 1920,
+        alt: 'TradePeople logo',
       },
     ],
     type: 'website',
@@ -32,7 +32,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: TITLE,
     description: DESCRIPTION,
-    images: [`${process.env.NEXT_BASE_URL}/images/logo.webp`],
+    images: [`${process.env.NEXT_BASE_URL}/images/tradepeople-logo.png`],
   },
   alternates: {
     canonical: `${process.env.NEXT_BASE_URL}/`,

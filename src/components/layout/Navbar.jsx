@@ -91,9 +91,11 @@ const Navbar = () => {
         </div>
       </div>
 
+      {/* Clip below the header so the off-screen drawer can't widen the page on mobile. */}
+      <div className="fixed inset-x-0 top-16 bottom-0 z-20 overflow-hidden pointer-events-none md:hidden">
       <div
-        className={`fixed z-20 top-16 right-0 h-full w-full bg-background shadow-soft-lg transform ${isOpen ? "translate-x-0" : "translate-x-full"
-          } transition-transform duration-300 ease-in-out md:hidden`}
+        className={`absolute inset-0 bg-background shadow-soft-lg transform pointer-events-auto ${isOpen ? "translate-x-0" : "translate-x-full invisible"
+          } transition-[transform,visibility] duration-300 ease-in-out`}
       >
         <button
           onClick={() => setIsOpen(false)}
@@ -137,6 +139,7 @@ const Navbar = () => {
             Log In
           </Link>
         </div>
+      </div>
       </div>
     </nav>
   );

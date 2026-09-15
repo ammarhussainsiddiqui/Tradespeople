@@ -13,7 +13,7 @@ return NextResponse.json(
   {
     status: 200,
     headers: {
-      'Access-Control-Allow-Origin': 'https://thetradecore.com',
+      'Access-Control-Allow-Origin': 'https://tradepeople.co.uk',
       'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type, Authorization, ngrok-skip-browser-warning',
     },
@@ -31,7 +31,7 @@ export async function OPTIONS() {
   return new Response(null, {
     status: 204,
     headers: {
-      'Access-Control-Allow-Origin': 'https://thetradecore.com',
+      'Access-Control-Allow-Origin': 'https://tradepeople.co.uk',
       'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type, Authorization, ngrok-skip-browser-warning',
     },

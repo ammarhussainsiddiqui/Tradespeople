@@ -286,7 +286,7 @@ const Page = () => {
                           ))}
                         </InputOTPGroup>
                         <InputOTPSeparator>
-                          <span className="text-2xl">â€¢</span>
+                          <span className="text-2xl">•</span>
                         </InputOTPSeparator>
                         <InputOTPGroup>
                           {[3, 4, 5].map((index) => (
@@ -312,7 +312,7 @@ const Page = () => {
                           className="text-xs text-muted-foreground cursor-pointer"
                           onClick={sendOTP}
                         >
-                          Didnâ€™t receive the code?{" "}
+                          Didn’t receive the code?{" "}
                           <b>
                             <u>Resend Code</u>
                           </b>

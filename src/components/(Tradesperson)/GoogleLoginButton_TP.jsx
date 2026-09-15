@@ -1,39 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { GoogleLogin } from "@react-oauth/google";
-import { decodeJwt } from "jose";
 import { toast } from "react-toastify";
 import * as Sentry from "@sentry/nextjs";
 import { login } from "../../actions/auth";
 import { useFormState } from "react-dom";
 const GoogleLoginButton_TP = () => {
   const [isPendingGoogle, setIsPendingGoogle] = useState(false);
+  // Google renders a fixed-width button, so pick the width once on mount
+  // instead of mounting two buttons (each one re-initialises Google Sign-In).
+  const [buttonWidth, setButtonWidth] = useState(null);
   const [currentState, loginAction, isPending] = useFormState(login, {});
 
+  useEffect(() => {
+    setButtonWidth(window.matchMedia("(min-width: 1024px)").matches ? "400" : "345");
+  }, []);
+
+  // The raw Google ID token goes to the server, which verifies it and reads
+  // the email from it. Decoding it here and sending the email isn't trustworthy.
   const handleSuccess = async (response) => {
-    const credential = response.credential;
-
-    // Decode the JWT token to extract user information
-    const decodedToken = decodeJwt(credential);
-    // Destructure the needed info and set as constants
-    const {
-      email,
-      given_name: firstName,
-      family_name: lastName,
-      picture: profile,
-    } = decodedToken;
-
-    // Set these as constants for easier access
-    const USER_EMAIL = email;
-    const USER_FIRST_NAME = firstName;
-    const USER_LAST_NAME = lastName;
-    const USER_PROFILE = profile;
-    // Now call your API with just the email (USER_EMAIL)
-    await handleGoogleSignupSuccess(
-      USER_EMAIL,
-      USER_FIRST_NAME,
-      USER_LAST_NAME,
-      USER_PROFILE
-    );
+    await handleGoogleSignupSuccess(response.credential);
   };
 
   const handleError = (error) => {
@@ -42,23 +27,16 @@ const GoogleLoginButton_TP = () => {
     });
   };
 
-  const handleGoogleSignupSuccess = async (
-    email,
-    firstName,
-    lastName,
-    profilePicture
-  ) => {
+  const handleGoogleSignupSuccess = async (credential) => {
     setIsPendingGoogle(true);
 
     try {
-      // Send just the email to your API for login/registration
-
       const apiResponse = await fetch("/api/google-auth", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, firstName, lastName, profilePicture }), // Only send email
+        body: JSON.stringify({ credential }),
       });
 
       const data = await apiResponse.json();
@@ -68,7 +46,7 @@ const GoogleLoginButton_TP = () => {
         const formDataEntries = new FormData();
         formDataEntries.append("email", data.email);
         formDataEntries.append("password", data.password || "00000"); // Use the password returned from the API
-        formDataEntries.append("roleId", 2); // Assuming 1 is for the "Customer" role
+        formDataEntries.append("roleId", 2); // 2 is the "Tradesperson" role
 
         // Call the login function with the form data
         const loginResponse = await loginAction(formDataEntries);
@@ -103,58 +81,24 @@ const GoogleLoginButton_TP = () => {
     }
   };
 
-  return (
-    <>
-      <div className="flex justify-center items-center w-full block lg:hidden">
-        <GoogleLogin
-          onSuccess={handleSuccess}
-          onFailure={handleError}
-          useOneTap={true}
-          type="standard"
-          theme="outline"
-          size="large"
-          text="continue_with"
-          shape="rectangular"
-          logo_alignment="center"
-          width="345"
-          render={(renderProps) => (
-            <button
-              onClick={renderProps.onClick}
-              disabled={renderProps.disabled}
-              className="w-full max-w-xs py-2 px-4 text-destructive-foreground bg-destructive hover:bg-primary-hover rounded-lg shadow-md text-lg font-semibold"
-            >
-              Sign In with Google
-            </button>
-          )}
-        />
-      </div>
+  if (!buttonWidth) return null;
 
-      <div className="flex justify-center items-center w-full hidden lg:block">
-        <GoogleLogin
-          onSuccess={handleSuccess}
-          onFailure={handleError}
-          useOneTap={true}
-          type="standard"
-          theme="outline"
-          size="large"
-          text="continue_with"
-          shape="rectangular"
-          logo_alignment="center"
-          width="400"
-          render={(renderProps) => (
-            <button
-              onClick={renderProps.onClick}
-              disabled={renderProps.disabled}
-              className="w-full max-w-xs py-2 px-4 text-destructive-foreground bg-destructive hover:bg-primary-hover rounded-lg shadow-md text-lg font-semibold"
-            >
-              Sign In with Google
-            </button>
-          )}
-        />
-      </div>
-    </>
+  return (
+    <div className="flex justify-center items-center w-full">
+      <GoogleLogin
+        onSuccess={handleSuccess}
+        onError={handleError}
+        useOneTap={true}
+        type="standard"
+        theme="outline"
+        size="large"
+        text="continue_with"
+        shape="rectangular"
+        logo_alignment="center"
+        width={buttonWidth}
+      />
+    </div>
   );
 };
 
 export default GoogleLoginButton_TP;
-

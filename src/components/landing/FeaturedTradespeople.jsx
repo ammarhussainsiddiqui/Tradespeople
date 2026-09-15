@@ -89,7 +89,7 @@ export default function FeaturedTradespeople() {
             Tradespeople you can hire today
           </h2>
           <p className="text-base text-muted-foreground">
-            A selection of the tradespeople on The Trade Core. Post your job to hear from them and others who cover your area.
+            A selection of the tradespeople on TradePeople. Post your job to hear from them and others who cover your area.
           </p>
         </div>
 

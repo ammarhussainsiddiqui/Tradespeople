@@ -2,7 +2,7 @@ import Stripe from "stripe";
 import authenticateToken from '../../authenticateToken';
 import { NextRequest, NextResponse } from "next/server";
 import * as Sentry from '@sentry/nextjs';
-const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
+const stripe = new Stripe((process.env.STRIPE_SECRET_KEY || process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY));
 
 export async function DELETE(request) {
   const authHeader = request.headers.get('authorization');

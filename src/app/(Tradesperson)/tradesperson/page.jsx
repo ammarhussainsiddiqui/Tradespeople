@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-const page = () => {
+const TradespersonIndexPage = () => {
   const router = useRouter()
   useEffect(() => {
     window.location.replace('tradesperson/home');
@@ -19,4 +19,4 @@ const page = () => {
   )
 }
 
-export default page
+export default TradespersonIndexPage

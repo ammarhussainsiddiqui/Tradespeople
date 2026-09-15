@@ -6,14 +6,14 @@ const { headers } = require("next/headers");
 import { PrismaClient } from "@prisma/client";
 import nodemailer from 'nodemailer';
 import * as Sentry from '@sentry/nextjs';
-const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
+const stripe = new Stripe((process.env.STRIPE_SECRET_KEY || process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY));
 const endpointSecret = process.env.NEXT_STRIPE_WEBHOOK_SECRET;
 const prisma = new PrismaClient();
 
 
 const sendStripeEmail = async (email, packageType) => {
   const USER = process.env.NEXT_PUBLIC_NODEMAILER_USER;
-  const PASS = process.env.NEXT_PUBLIC_NODEMAILER_PASS;
+  const PASS = (process.env.NODEMAILER_PASS || process.env.NEXT_PUBLIC_NODEMAILER_PASS);
 
   try {
     // Configure nodemailer service
@@ -43,7 +43,7 @@ const sendStripeEmail = async (email, packageType) => {
 Thank you for subscribing to the UK’s fastest-growing trade directory. Your profile can now be found by thousands of homeowners in your chosen area. You also have access to unlimited leads via jobs posted by users.
   </p>
   <p style="font-size: 18px; color: ${EMAIL_THEME.text}; margin-top: 10px; line-height: 1.6;">
-If you need to view or edit your profile you can <a style="color: ${EMAIL_THEME.accent}; text-decoration: none;" href="https://app.thetradecore.com/login"> log in </a>here.
+If you need to view or edit your profile you can <a style="color: ${EMAIL_THEME.accent}; text-decoration: none;" href="https://app.tradepeople.co.uk/login"> log in </a>here.
   </p>
   <p style="font-size: 18px; color: ${EMAIL_THEME.text}; margin-top: 10px; line-height: 1.6;">
 If you need support you can contact us via WhatsApp on 07741 872816 or email at hello@thetradecore.com.
@@ -53,7 +53,7 @@ The Team  </p>
 </div>
           <div style="margin-top: 30px; padding: 10px; border-top: 1px solid ${EMAIL_THEME.accent};">
               <p style="font-size: 12px; color: ${EMAIL_THEME.mutedText};">© 2024. All rights reserved.</p>
-              <p style="font-size: 12px; color: ${EMAIL_THEME.mutedText};">Visit us at <a href="https://thetradecore.com" style="color: ${EMAIL_THEME.accent}; text-decoration: none;">thetradecore.com</a></p>
+              <p style="font-size: 12px; color: ${EMAIL_THEME.mutedText};">Visit us at <a href="https://tradepeople.co.uk" style="color: ${EMAIL_THEME.accent}; text-decoration: none;">tradepeople.co.uk</a></p>
           </div>
         </div>
       `,
@@ -71,7 +71,7 @@ The Team  </p>
 
 const sendUpdateStripeEmail = async (email, packageType) => {
   const USER = process.env.NEXT_PUBLIC_NODEMAILER_USER;
-  const PASS = process.env.NEXT_PUBLIC_NODEMAILER_PASS;
+  const PASS = (process.env.NODEMAILER_PASS || process.env.NEXT_PUBLIC_NODEMAILER_PASS);
 
   try {
     // Configure nodemailer service
@@ -103,7 +103,7 @@ const sendUpdateStripeEmail = async (email, packageType) => {
           </div>
           <div style="margin-top: 30px; padding: 10px; border-top: 1px solid ${EMAIL_THEME.accent};">
               <p style="font-size: 12px; color: ${EMAIL_THEME.mutedText};">© 2024. All rights reserved.</p>
-              <p style="font-size: 12px; color: ${EMAIL_THEME.mutedText};">Visit us at <a href="https://thetradecore.com" style="color: ${EMAIL_THEME.accent}; text-decoration: none;">thetradecore.com</a></p>
+              <p style="font-size: 12px; color: ${EMAIL_THEME.mutedText};">Visit us at <a href="https://tradepeople.co.uk" style="color: ${EMAIL_THEME.accent}; text-decoration: none;">tradepeople.co.uk</a></p>
           </div>
         </div>
       `,
@@ -122,7 +122,7 @@ const sendUpdateStripeEmail = async (email, packageType) => {
 
 const sendCancelStripeEmail = async (email, packageType) => {
   const USER = process.env.NEXT_PUBLIC_NODEMAILER_USER;
-  const PASS = process.env.NEXT_PUBLIC_NODEMAILER_PASS;
+  const PASS = (process.env.NODEMAILER_PASS || process.env.NEXT_PUBLIC_NODEMAILER_PASS);
 
   try {
     // Configure nodemailer service
@@ -154,7 +154,7 @@ const sendCancelStripeEmail = async (email, packageType) => {
           </div>
           <div style="margin-top: 30px; padding: 10px; border-top: 1px solid ${EMAIL_THEME.accent};">
               <p style="font-size: 12px; color: ${EMAIL_THEME.mutedText};">© 2024. All rights reserved.</p>
-              <p style="font-size: 12px; color: ${EMAIL_THEME.mutedText};">Visit us at <a href="https://thetradecore.com" style="color: ${EMAIL_THEME.accent}; text-decoration: none;">thetradecore.com</a></p>
+              <p style="font-size: 12px; color: ${EMAIL_THEME.mutedText};">Visit us at <a href="https://tradepeople.co.uk" style="color: ${EMAIL_THEME.accent}; text-decoration: none;">tradepeople.co.uk</a></p>
           </div>
         </div>
       `,

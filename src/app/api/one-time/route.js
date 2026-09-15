@@ -1,19 +1,26 @@
 import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
+import Stripe from 'stripe';
+import { forbidden, getRequestUser, unauthorized } from '../../../lib/auth/session';
 
 const prisma = new PrismaClient();
 
 /**
  * POST /api/one-time
- * Body: { userId: number, sessionId: string, amount?: number }
+ * Body: { sessionId: string } — a Stripe Checkout session ID.
+ * The user comes from the session token and the amount from Stripe, so a plan
+ * can only be activated for a real, paid checkout by the person who paid.
  */
 export async function POST(req) {
+  const caller = await getRequestUser(req);
+  if (!caller) return unauthorized();
+
   try {
     const body = await req.json();
-    const { userId, sessionId, amount } = body;
-    if (!userId || !sessionId) {
+    const { sessionId } = body;
+    if (!sessionId) {
       return NextResponse.json(
-        { error: 'userId and sessionId are required' },
+        { error: 'sessionId is required' },
         { status: 400 }
       );
     }
@@ -30,9 +37,26 @@ export async function POST(req) {
       );
     }
 
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
+    let session;
+    try {
+      session = await stripe.checkout.sessions.retrieve(sessionId);
+    } catch {
+      return NextResponse.json({ error: 'Checkout session not found' }, { status: 400 });
+    }
+
+    if (session.mode !== 'payment' || session.payment_status !== 'paid') {
+      return NextResponse.json({ error: 'Payment has not been completed' }, { status: 402 });
+    }
+
+    const sessionUserId = session.metadata?.userId ?? session.client_reference_id;
+    if (sessionUserId && Number(sessionUserId) !== caller.id) return forbidden();
+
+    const amount = session.amount_total != null ? session.amount_total / 100 : null;
+
     // Fetch user
     const user = await prisma.user.findUnique({
-      where: { id: userId },
+      where: { id: caller.id },
     });
 
     if (!user) {
@@ -91,7 +115,7 @@ export async function POST(req) {
     );
   } catch (error) {
     return NextResponse.json(
-      { error: 'Internal server error', details: error.message },
+      { error: 'Internal server error' },
       { status: 500 }
     );
   }

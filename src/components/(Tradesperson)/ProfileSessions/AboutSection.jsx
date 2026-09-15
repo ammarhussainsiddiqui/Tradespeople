@@ -1130,7 +1130,7 @@ const ProfileForm = ({ accountDetailsSave }) => {
                           style={{ justifyContent: 'center' }}
                           className="flex text-xs text-center item-center text-muted-foreground font-normal ml-auto cursor-pointer"
                         >
-                          Didnâ€™t receive the code? <b>
+                          Didn’t receive the code? <b>
                             <svg
                               style={{ marginTop: '2px', marginLeft: '10px' }}
                               className={`animate-spin h-3 w-3`}
@@ -1162,7 +1162,7 @@ const ProfileForm = ({ accountDetailsSave }) => {
                                 className="text-xs text-center text-muted-foreground font-normal cursor-pointer"
                                 onClick={resendCode}
                               >
-                                Didnâ€™t receive the code? <b><u>Resend Code</u></b>
+                                Didn’t receive the code? <b><u>Resend Code</u></b>
                               </span>
                             ) : (
                               <span className="text-xs text-center text-muted-foreground font-normal">
@@ -1308,7 +1308,7 @@ const ProfileForm = ({ accountDetailsSave }) => {
                   name="phone"
                   value={phone ? phone : ''}
                   disabled
-                  placeholder={"Click 'Add Phone Number' to enter contactÂ details"}
+                  placeholder={"Click 'Add Phone Number' to enter contact details"}
                   className="mt-1 block w-full py-4 px-3 text-xs bg-neutral-100 text-ink-muted border border-neutral-300 rounded-lg ring-neutral-400  order-gray-400 focus:ring-neutral-300 focus:border-neutral-300"
                 />
 
@@ -1433,11 +1433,11 @@ const ProfileForm = ({ accountDetailsSave }) => {
                 <Tooltip >
                   <TooltipTrigger asChild>
                     <span className="cursor-pointer text-center border w-[5%] rounded-full hover:text-ink-soft bg-neutral-100 text-ink-strong border-neutral-100 ">
-                      â„¹
+                      ℹ
                     </span>
                   </TooltipTrigger>
                   <TooltipContent side="top" align="center" className="max-w-xs">
-                    Go to Google Maps â†’ click <strong>Share</strong> â†’ then <strong>Embed a map</strong> â†’ copy the iframe code or the src link and paste it here.
+                    Go to Google Maps → click <strong>Share</strong> → then <strong>Embed a map</strong> → copy the iframe code or the src link and paste it here.
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
@@ -1664,7 +1664,7 @@ const ProfileForm = ({ accountDetailsSave }) => {
                     className="mt-1 block w-full py-3 px-3 text-sm bg-neutral-100 text-ink-strong border border-neutral-100 rounded-lg focus:ring-neutral-300 focus:border-neutral-300"
                     placeholder="Enter your company postcode"
                   />
-                  <span className="block text-xs text-ink-soft">â“˜ This will not affect the areas where you offer or provide services.</span>
+                  <span className="block text-xs text-ink-soft">ⓘ This will not affect the areas where you offer or provide services.</span>
                 </div>
               </div>
             </section>

@@ -20,7 +20,7 @@ const cookieConfig = {
   //maxAge: 60 * 60 * 24 * 7, 
   sameSite: 'Strict',
 };
-const JWT_SECRET = process.env.NEXT_PUBLIC_JWT_SECRET;
+const JWT_SECRET = (process.env.JWT_SECRET || process.env.NEXT_PUBLIC_JWT_SECRET);
 const base_Uri = process.env.NEXT_PUBLIC_API_URL;
 
 

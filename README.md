@@ -1,26 +1,25 @@
 
-# The Trade Core 🛠
-![Logo](https://thetradecore.com/wp-content/uploads/2024/07/TradeCore-Logo.webp)
+# TradePeople 🛠
 
-[![Website](https://img.shields.io/badge/Visit-Website-blue)](https://www.thetradecore.com)
+[![Website](https://img.shields.io/badge/Visit-Website-blue)](https://www.tradepeople.co.uk)
 ## ⚠ License
 This is a *private project*. All rights reserved. Unauthorized use, distribution, or modification of any part of this codebase is strictly prohibited.
 
 
-Welcome to *The Trade Core*, a trusted platform that connects homeowners with skilled, verified tradespeople across the UK. Whether you need an electrician, plumber, painter, or roofer – we help you find reliable professionals for your home improvement projects.
+Welcome to *TradePeople*, a trusted platform that connects homeowners with skilled, verified tradespeople across the UK. Whether you need an electrician, plumber, painter, or roofer – we help you find reliable professionals for your home improvement projects.
 
 
 ---
 
 ## 🌐 Live Website
 
-👉 [Visit TheTradeCore.com](https://www.thetradecore.com)
+👉 [Visit TradePeople.co.uk](https://www.tradepeople.co.uk)
 
 ---
 
-## 💡 About The Trade Core
+## 💡 About TradePeople
 
-The Trade Core is designed to make hiring local tradespeople simple and secure. We provide a platform where homeowners can post jobs, compare offers, and hire vetted professionals, all with the confidence of trusted reviews and guaranteed satisfaction.
+TradePeople is designed to make hiring local tradespeople simple and secure. We provide a platform where homeowners can post jobs, compare offers, and hire vetted professionals, all with the confidence of trusted reviews and guaranteed satisfaction.
 
 ### 🌟 Key Features
 - ✅ Verified and vetted tradespeople
@@ -50,8 +49,8 @@ The Trade Core is designed to make hiring local tradespeople simple and secure. 
 ### Clone the repository and🏗 Getting Started
 
 ```bash
-git clone https://github.com/yourusername/thetradecore.git
-cd thetradecore
+git clone https://github.com/yourusername/tradepeople.git
+cd tradepeople
 
 npx prisma generate
 or

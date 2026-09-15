@@ -3,11 +3,12 @@ import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 import nodemailer from "nodemailer";
 import * as Sentry from '@sentry/nextjs';
+import { forbidden, getRequestUser, unauthorized } from '../../../lib/auth/session';
 
 const prisma = new PrismaClient();
 
 const USER = process.env.NEXT_PUBLIC_NODEMAILER_USER;
-const PASS = process.env.NEXT_PUBLIC_NODEMAILER_PASS;
+const PASS = (process.env.NODEMAILER_PASS || process.env.NEXT_PUBLIC_NODEMAILER_PASS);
 
 const sendEmail = async (user, tradesperson, job) => {
   const transporter = nodemailer.createTransport({
@@ -46,7 +47,7 @@ const sendEmail = async (user, tradesperson, job) => {
 <div style="margin-top: 20px; padding: 15px; border-top: 1px solid ${EMAIL_THEME.accent};">
     <p style="font-size: 12px; color: ${EMAIL_THEME.mutedText}; text-align: center;">© 2024. All rights reserved.</p>
     <p style="font-size: 12px; color: ${EMAIL_THEME.mutedText}; text-align: center;">
-        Visit us at <a href="https://thetradecore.com" style="color: ${EMAIL_THEME.surfaceText}; text-decoration: none; border-bottom: 1px dotted ${EMAIL_THEME.accent};">thetradecore.com</a>
+        Visit us at <a href="https://tradepeople.co.uk" style="color: ${EMAIL_THEME.surfaceText}; text-decoration: none; border-bottom: 1px dotted ${EMAIL_THEME.accent};">tradepeople.co.uk</a>
     </p>
 </div>
 
@@ -70,6 +71,11 @@ export async function POST(request) {
         { status: 400 }
       );
     }
+
+    // Only the homeowner who left the review can notify the tradesperson
+    const caller = await getRequestUser(request);
+    if (!caller) return unauthorized();
+    if (Number(userId) !== caller.id) return forbidden();
 
     // Fetch the request data with relations
     const requestData = await prisma.request.findUnique({

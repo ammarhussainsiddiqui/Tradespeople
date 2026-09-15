@@ -19,10 +19,10 @@ import { toast } from "react-toastify";
 import { useGlobalState } from '../../context/GlobalStateContext';
 import GoogleLoginButton from "../../../components/GoogleLoginButton";
 import GoogleLoginButton_TP from "../../../components/(Tradesperson)/GoogleLoginButton_TP";
-import ttcarrow from "../../assets/ttcarrow.webp"
+import loginArrow from "../../assets/login-arrow.webp"
 import Image from 'next/image';
 
-const page = () => {
+const LoginPage = () => {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState("Customer");
   const { jobCache, setjobCache, emailFlag, setEmailFlag, userId, setUserId } =
@@ -134,37 +134,7 @@ const page = () => {
   if (!mounted) return null;
   return (
     <>
-      <head>
-        <title>Login â€“ Post Jobs or Find Local Tradespeople</title>
-        <meta
-          name="description"
-          content="Login to post jobs or find local, trusted tradespeople. Whether you're looking to hire or offer your services, get started today."
-        />
-        <meta
-          property="og:title"
-          content="Login â€“ Post Jobs or Find Local Tradespeople"
-        />
-        <meta
-          property="og:description"
-          content="Login to post jobs or find local, trusted tradespeople. Whether you're looking to hire or offer your services, get started today."
-        />
-
-        <meta property="og:url" content="http://localhost:3000/login" />
-        <meta property="og:type" content="website" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          name="twitter:title"
-          content="Login â€“ Post Jobs or Find Local Tradespeople"
-        />
-        <meta
-          name="twitter:description"
-          content="Login to post jobs or find local, trusted tradespeople. Whether you're looking to hire or offer your services, get started today."
-        />
-        <link
-          rel="canonical"
-          href="http://localhost:3000/login"
-        />
-      </head>
+      {/* Title, description, Open Graph and canonical tags come from `metadata` in login/page.jsx. */}
       <div className="content max-w-7xl mx-auto w-screen px-4 sm:px-6 lg:px-8 bg-muted">
         <Dialog
           open={dialogOpen}
@@ -213,14 +183,14 @@ const page = () => {
         </Dialog>
         <div className="flex flex-row items-center justify-center w-screen p-4">
           <div className='absolute hidden md:flex flex-col  justify-center items-center mr-[520px] -mt-[260px]'>
-            <Image src={ttcarrow} alt="Arrow indicator" width={100} height={100} className='ml-8 mb-[90px]' priority
+            <Image src={loginArrow} alt="Arrow indicator" width={100} height={100} className='ml-8 mb-[90px]' priority
               fetchPriority="high"
               loading="eager" />
-            <button className="relative -rotate-90 z-[1] font-extrabold text-[17px] text-accent-foreground transition-all duration-[250ms] overflow-hidden  px-12 md:px-8 lg:px-12 py-2 rounded-[15px] bgColor border-none group  hidden md:block mr-5" onClick={(e) => {
+            <button className="relative -rotate-90 z-[1] font-extrabold text-[17px] text-accent-foreground transition-all [transition-duration:250ms] overflow-hidden  px-12 md:px-8 lg:px-12 py-2 rounded-[15px] bgColor border-none group  hidden md:block mr-5" onClick={(e) => {
               e.preventDefault();
               setDialogOpen(true);
             }}>
-              <span className="absolute inset-0 w-0 bg-primary z-[-1] shadow-[4px_8px_19px_-3px_hsl(var(--shadow-strong))] transition-all duration-[250ms] rounded-[15px] left-0 top-0 group-hover:w-full"></span>
+              <span className="absolute inset-0 w-0 bg-primary z-[-1] shadow-[4px_8px_19px_-3px_hsl(var(--shadow-strong))] transition-all [transition-duration:250ms] rounded-[15px] left-0 top-0 group-hover:w-full"></span>
               <span className="relative block group-hover:text-ink-inverse">Switch login type</span>
             </button>
           </div>
@@ -238,6 +208,7 @@ const page = () => {
                     type="email"
                     name="email"
                     id="email"
+                    autoComplete="email"
                     onChange={validateEmail}
                     placeholder="Enter your email address"
                     className="w-full p-3 border rounded-md focus:outline-none focus:border-accent"
@@ -255,6 +226,7 @@ const page = () => {
                     <input
                       name="password"
                       type={showPassword ? 'text' : 'password'}
+                      autoComplete="current-password"
                       placeholder="Enter your password"
                       className="w-full p-3 border rounded-md focus:outline-none focus:border-accent"
                     />
@@ -368,11 +340,11 @@ const page = () => {
               </form>
 
             </div>
-            <button className="relative z-[1] mb-4 font-extrabold text-[17px] text-accent-foreground transition-all duration-[250ms] overflow-hidden px-12 py-2 rounded-[15px] bgColor border-none group  md:hidden block" onClick={(e) => {
+            <button className="relative z-[1] mb-4 font-extrabold text-[17px] text-accent-foreground transition-all [transition-duration:250ms] overflow-hidden px-12 py-2 rounded-[15px] bgColor border-none group  md:hidden block" onClick={(e) => {
               e.preventDefault();
               setDialogOpen(true);
             }}>
-              <span className="absolute inset-0 w-0 bg-primary z-[-1] shadow-[4px_8px_19px_-3px_hsl(var(--shadow-strong))] transition-all duration-[250ms] rounded-[15px] left-0 top-0 group-hover:w-full"></span>
+              <span className="absolute inset-0 w-0 bg-primary z-[-1] shadow-[4px_8px_19px_-3px_hsl(var(--shadow-strong))] transition-all [transition-duration:250ms] rounded-[15px] left-0 top-0 group-hover:w-full"></span>
               <span className="relative group-hover:text-ink-inverse -rotate-90">Switch user role</span>
             </button>
             <div className="bg-surface p-6 rounded-lg  w-full max-w-md border border-neutral-200">
@@ -405,4 +377,4 @@ const page = () => {
   );
 };
 
-export default page
+export default LoginPage

@@ -61,7 +61,7 @@ export function AreasCovered({ areas }) {
             Where we work
           </h2>
           <p className="text-base text-muted-foreground">
-            Tradespeople on The Trade Core cover {areas.length} areas across England, Scotland, Wales and Northern Ireland,
+            Tradespeople on TradePeople cover {areas.length} areas across England, Scotland, Wales and Northern Ireland,
             plus the towns around each one.
           </p>
         </div>

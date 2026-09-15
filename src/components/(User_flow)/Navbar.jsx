@@ -182,7 +182,9 @@ const Navbar = () => {
                         </button>
                     </div>
                 </div>
-                <div className={`fixed z-20 top-0 right-0 h-full w-full bg-secondary shadow-2xl rounded-lg transform ${isOpen ? "translate-x-0" : "translate-x-full"} transition-transform duration-300 ease-in-out md:hidden`}>
+                {/* Viewport-sized clip so the off-screen drawer can't widen the page on mobile. */}
+                <div className="fixed inset-0 z-20 overflow-hidden pointer-events-none md:hidden">
+                <div className={`absolute inset-0 bg-secondary shadow-2xl rounded-lg transform pointer-events-auto ${isOpen ? "translate-x-0" : "translate-x-full invisible"} transition-[transform,visibility] duration-300 ease-in-out`}>
                     <div className='flex justify-between'>
                         <div className='p-4 text-lg font-semibold'>
                             <Link href={'/'}>
@@ -220,7 +222,7 @@ const Navbar = () => {
                         >
                             Change email
                         </a>
-                        <Link href={`https://thetradecore.com/help-center/`} target='_blank' className="block px-4 py-2  font-bold text-[17px]  text-foreground ">
+                        <Link href={`https://tradepeople.co.uk/help-center/`} target='_blank' className="block px-4 py-2  font-bold text-[17px]  text-foreground ">
 
                             Help Center
                         </Link>
@@ -232,6 +234,7 @@ const Navbar = () => {
 
                         </div>
                     </div>
+                </div>
                 </div>
             </nav>
             <EmailChangeDialog

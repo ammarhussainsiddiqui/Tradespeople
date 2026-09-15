@@ -4,7 +4,7 @@ import Stripe from "stripe";
 import { PrismaClient } from "@prisma/client";
 import nodemailer from 'nodemailer';
 const prisma = new PrismaClient();
-const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
+const stripe = new Stripe((process.env.STRIPE_SECRET_KEY || process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY));
 
 async function checkFailedInvoices() {
   const thirtyDaysAgo = Math.floor(Date.now() / 1000) - (30 * 24 * 60 * 60);
@@ -73,7 +73,7 @@ async function checkFailedInvoices() {
 async function sendEmailToFailedInvoices() {
   try {
     const USER = process.env.NEXT_PUBLIC_NODEMAILER_USER;
-    const PASS = process.env.NEXT_PUBLIC_NODEMAILER_PASS;
+    const PASS = (process.env.NODEMAILER_PASS || process.env.NEXT_PUBLIC_NODEMAILER_PASS);
     const transporter = nodemailer.createTransport({
       service: "Gmail",
       auth: {
@@ -136,7 +136,7 @@ async function sendEmailToFailedInvoices() {
                   ${now.getFullYear()}. All rights reserved.
                 </p>
                 <p style="font-size: 12px; color: ${EMAIL_THEME.mutedText}; text-align: center;">
-                  Visit us at <a href="https://thetradecore.com" style="color: ${EMAIL_THEME.surfaceText}; text-decoration: none; border-bottom: 1px dotted ${EMAIL_THEME.surfaceText};">thetradecore.com</a>
+                  Visit us at <a href="https://tradepeople.co.uk" style="color: ${EMAIL_THEME.surfaceText}; text-decoration: none; border-bottom: 1px dotted ${EMAIL_THEME.surfaceText};">tradepeople.co.uk</a>
                 </p>
               </div>
             </div>

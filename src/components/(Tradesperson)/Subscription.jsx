@@ -434,7 +434,7 @@ const TradepersonsSubscription = ({ subscriptionEndTime, remainingLeads, Subscri
                                 <span className="bg-accent text-accent-foreground px-3 py-1 rounded-md text-sm font-semibold">Silver</span>
                             </div>
                             <div className='flex '>
-                                <div className="text-3xl text-foreground font-bold mb-4">Â£ 9.99 </div>
+                                <div className="text-3xl text-foreground font-bold mb-4">£ 9.99 </div>
                                 <span className='text-sm mt-2 text-[hsl(var(--neutral-400))]'>/month</span>
                             </div>
                             <div className="space-y-5">
@@ -444,23 +444,23 @@ const TradepersonsSubscription = ({ subscriptionEndTime, remainingLeads, Subscri
                                 </div>
                                 <div className="flex items-start">
                                     <CheckCircle className="w-5 h-5 text-accent mr-2 mt-1" />
-                                    <p className="text-muted-foreground text-sm">â Exposure to thousands of homeowners.</p>
+                                    <p className="text-muted-foreground text-sm">⁠Exposure to thousands of homeowners.</p>
                                 </div>
                                 <div className="flex items-start">
                                     <CheckCircle className="w-5 h-5 text-accent mr-2 mt-1" />
-                                    <p className="text-muted-foreground text-sm">â Unlimited leads via jobs posted.</p>
+                                    <p className="text-muted-foreground text-sm">⁠Unlimited leads via jobs posted.</p>
                                 </div>
                                 <div className="flex items-start">
                                     <CheckCircle className="w-5 h-5 text-accent mr-2 mt-1" />
-                                    <p className="text-muted-foreground text-sm">â New job alerts.</p>
+                                    <p className="text-muted-foreground text-sm">⁠New job alerts.</p>
                                 </div>
                                 <div className="flex items-start">
                                     <CheckCircle className="w-5 h-5 text-accent mr-2 mt-1" />
-                                    <p className="text-muted-foreground text-sm">â Choice of multiple communication channels.</p>
+                                    <p className="text-muted-foreground text-sm">⁠Choice of multiple communication channels.</p>
                                 </div>
                                 <div className="flex items-start">
                                     <CheckCircle className="w-5 h-5 text-accent mr-2 mt-1" />
-                                    <p className="text-muted-foreground text-sm">â Customer support 7 days a week.</p>
+                                    <p className="text-muted-foreground text-sm">⁠Customer support 7 days a week.</p>
                                 </div>
                             </div>
                         </div>
@@ -504,38 +504,38 @@ const TradepersonsSubscription = ({ subscriptionEndTime, remainingLeads, Subscri
                             </div>
                             <div className='flex '>
 
-                                <div className="text-3xl text-ink-inverse font-bold mb-4">Â£ 24.99 </div>
+                                <div className="text-3xl text-ink-inverse font-bold mb-4">£ 24.99 </div>
 
                                 <span className='text-sm mt-2 text-[hsl(var(--neutral-400))]'>/month</span>
                             </div>
                             <div className="space-y-5">
                                 <div className="flex items-start">
                                     <CheckCircle className="w-5 h-5 text-accent mr-2 mt-1" />
-                                    <p className="text-accent text-base font-bold ">â Be featured at the top of your directory page.</p>
+                                    <p className="text-accent text-base font-bold ">⁠Be featured at the top of your directory page.</p>
                                 </div>
                                 <div className="flex items-start">
                                     <CheckCircle className="w-5 h-5 text-accent mr-2 mt-1" />
-                                    <p className="text-[hsl(var(--neutral-400))] text-sm">â One trade on your profile.</p>
+                                    <p className="text-[hsl(var(--neutral-400))] text-sm">⁠One trade on your profile.</p>
                                 </div>
                                 <div className="flex items-start">
                                     <CheckCircle className="w-5 h-5 text-accent mr-2 mt-1" />
-                                    <p className="text-[hsl(var(--neutral-400))] text-sm">â Exposure to thousands of homeowners.</p>
+                                    <p className="text-[hsl(var(--neutral-400))] text-sm">⁠Exposure to thousands of homeowners.</p>
                                 </div>
                                 <div className="flex items-start">
                                     <CheckCircle className="w-5 h-5 text-accent mr-2 mt-1" />
-                                    <p className="text-[hsl(var(--neutral-400))] text-sm">â Unlimited leads via jobs posted.</p>
+                                    <p className="text-[hsl(var(--neutral-400))] text-sm">⁠Unlimited leads via jobs posted.</p>
                                 </div>
                                 <div className="flex items-start">
                                     <CheckCircle className="w-5 h-5 text-accent mr-2 mt-1" />
-                                    <p className="text-[hsl(var(--neutral-400))] text-sm">â New job alerts.</p>
+                                    <p className="text-[hsl(var(--neutral-400))] text-sm">⁠New job alerts.</p>
                                 </div>
                                 <div className="flex items-start">
                                     <CheckCircle className="w-5 h-5 text-accent mr-2 mt-1" />
-                                    <p className="text-[hsl(var(--neutral-400))] text-sm">â Choice of multiple communication channels.</p>
+                                    <p className="text-[hsl(var(--neutral-400))] text-sm">⁠Choice of multiple communication channels.</p>
                                 </div>
                                 <div className="flex items-start">
                                     <CheckCircle className="w-5 h-5 text-accent mr-2 mt-1" />
-                                    <p className="text-[hsl(var(--neutral-400))] text-sm">â Customer support 7 days a week.</p>
+                                    <p className="text-[hsl(var(--neutral-400))] text-sm">⁠Customer support 7 days a week.</p>
                                 </div>
                             </div>
                         </div>
@@ -579,7 +579,7 @@ const TradepersonsSubscription = ({ subscriptionEndTime, remainingLeads, Subscri
                             </div>
                             <div className='flex '>
 
-                                <div className="text-3xl text-foreground font-bold mb-4">Â£ 19.99 </div>
+                                <div className="text-3xl text-foreground font-bold mb-4">£ 19.99 </div>
 
                                 <span className='text-sm mt-2 text-ink-muted'>/month</span>
                             </div>
@@ -590,23 +590,23 @@ const TradepersonsSubscription = ({ subscriptionEndTime, remainingLeads, Subscri
                                 </div>
                                 <div className="flex items-start">
                                     <CheckCircle className="w-5 h-5 text-accent mr-2 mt-1" />
-                                    <p className="text-muted-foreground text-sm">â Exposure to thousands of homeowners.</p>
+                                    <p className="text-muted-foreground text-sm">⁠Exposure to thousands of homeowners.</p>
                                 </div>
                                 <div className="flex items-start">
                                     <CheckCircle className="w-5 h-5 text-accent mr-2 mt-1" />
-                                    <p className="text-muted-foreground text-sm">â Unlimited leads via jobs posted.</p>
+                                    <p className="text-muted-foreground text-sm">⁠Unlimited leads via jobs posted.</p>
                                 </div>
                                 <div className="flex items-start">
                                     <CheckCircle className="w-5 h-5 text-accent mr-2 mt-1" />
-                                    <p className="text-muted-foreground text-sm">â New job alerts.</p>
+                                    <p className="text-muted-foreground text-sm">⁠New job alerts.</p>
                                 </div>
                                 <div className="flex items-start">
                                     <CheckCircle className="w-5 h-5 text-accent mr-2 mt-1" />
-                                    <p className="text-muted-foreground text-sm">â Choice of multiple communication channels.</p>
+                                    <p className="text-muted-foreground text-sm">⁠Choice of multiple communication channels.</p>
                                 </div>
                                 <div className="flex items-start">
                                     <CheckCircle className="w-5 h-5 text-accent mr-2 mt-1" />
-                                    <p className="text-muted-foreground text-sm">â Customer support 7 days a week.</p>
+                                    <p className="text-muted-foreground text-sm">⁠Customer support 7 days a week.</p>
                                 </div>
                             </div>
                         </div>
@@ -645,37 +645,37 @@ const TradepersonsSubscription = ({ subscriptionEndTime, remainingLeads, Subscri
                                 <span className="bg-accent text-accent-foreground px-3 py-1 rounded-md text-sm font-semibold">Gold <b className='text-[20px]'>+</b></span>
                             </div>
                             <div className='flex '>
-                                <div className="text-3xl text-foreground font-bold mb-4">Â£ 34.99 </div>
+                                <div className="text-3xl text-foreground font-bold mb-4">£ 34.99 </div>
                                 <span className='text-sm mt-2 text-ink-muted'>/month</span>
                             </div>
                             <div className="space-y-3">
                                 <div className="flex items-start">
                                     <CheckCircle className="w-5 h-5 text-accent mr-2 mt-1" />
-                                    <p className="text-muted-foreground text-base font-bold">â Be featured at the top of your directory pages.</p>
+                                    <p className="text-muted-foreground text-base font-bold">⁠Be featured at the top of your directory pages.</p>
                                 </div>
                                 <div className="flex items-start">
                                     <CheckCircle className="w-5 h-5 text-accent mr-2 mt-1" />
-                                    <p className="text-muted-foreground text-sm">â Up to five trades on your profile.</p>
+                                    <p className="text-muted-foreground text-sm">⁠Up to five trades on your profile.</p>
                                 </div>
                                 <div className="flex items-start">
                                     <CheckCircle className="w-5 h-5 text-accent mr-2 mt-1" />
-                                    <p className="text-muted-foreground text-sm">â Exposure to thousands of homeowners.</p>
+                                    <p className="text-muted-foreground text-sm">⁠Exposure to thousands of homeowners.</p>
                                 </div>
                                 <div className="flex items-start">
                                     <CheckCircle className="w-5 h-5 text-accent mr-2 mt-1" />
-                                    <p className="text-muted-foreground text-sm">â Unlimited leads via jobs posted.</p>
+                                    <p className="text-muted-foreground text-sm">⁠Unlimited leads via jobs posted.</p>
                                 </div>
                                 <div className="flex items-start">
                                     <CheckCircle className="w-5 h-5 text-accent mr-2 mt-1" />
-                                    <p className="text-muted-foreground text-sm">â New job alerts.</p>
+                                    <p className="text-muted-foreground text-sm">⁠New job alerts.</p>
                                 </div>
                                 <div className="flex items-start">
                                     <CheckCircle className="w-5 h-5 text-accent mr-2 mt-1" />
-                                    <p className="text-muted-foreground text-sm">â Choice of multiple communication channels.</p>
+                                    <p className="text-muted-foreground text-sm">⁠Choice of multiple communication channels.</p>
                                 </div>
                                 <div className="flex items-start">
                                     <CheckCircle className="w-5 h-5 text-accent mr-2 mt-1" />
-                                    <p className="text-muted-foreground text-sm">â Customer support 7 days a week.</p>
+                                    <p className="text-muted-foreground text-sm">⁠Customer support 7 days a week.</p>
                                 </div>
                             </div>
                         </div>
@@ -718,7 +718,7 @@ const TradepersonsSubscription = ({ subscriptionEndTime, remainingLeads, Subscri
                             </div>
                             <div className='flex '>
 
-                                <div className="text-3xl text-foreground font-bold ">Â£ 99.99 </div>
+                                <div className="text-3xl text-foreground font-bold ">£ 99.99 </div>
                             </div>
                         </div>
                         <div className="space-y-4 mb-8">
@@ -744,7 +744,7 @@ const TradepersonsSubscription = ({ subscriptionEndTime, remainingLeads, Subscri
                             </div>
                             <div className="flex items-start">
                                 <CheckCircle className="w-5 h-5 text-accent mr-3 mt-1 flex-shrink-0" />
-                                <p className="text-neutral-600 text-sm">Lâ ink reviews</p>
+                                <p className="text-neutral-600 text-sm">L⁠ink reviews</p>
                             </div>
                             <div className="flex items-start">
                                 <CheckCircle className="w-5 h-5 text-accent mr-3 mt-1 flex-shrink-0" />

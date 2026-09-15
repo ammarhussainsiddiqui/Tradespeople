@@ -540,7 +540,7 @@ const Page = () => {
                       onClick={() => paginate(currentPage - 1)}
                       disabled={currentPage === 1}
                     >
-                      â†
+                      ←
                     </button>
                     {Array.from(
                       { length: Math.min(3, totalPages) },
@@ -567,7 +567,7 @@ const Page = () => {
                       onClick={() => paginate(currentPage + 1)}
                       disabled={currentPage === totalPages}
                     >
-                      â†’
+                      →
                     </button>
                   </div>
                 </div>

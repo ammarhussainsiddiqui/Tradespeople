@@ -261,7 +261,7 @@ const SignupForm = () => {
             htmlFor="area"
             className="block text-sm font-medium text-ink-soft"
           >
-            Once signed up, youâ€™ll be able to add multiple trade areas in the leads settings. When selecting Central London as your trade area all postcodes within the Central London boroughÂ areÂ included.
+            Once signed up, you’ll be able to add multiple trade areas in the leads settings. When selecting Central London as your trade area all postcodes within the Central London borough are included.
           </label>
 
           <div className="relative mt-1 hidden md:block">
@@ -367,7 +367,7 @@ const SignupForm = () => {
             <p>
               Do you agree to our{" "}
               <a
-                href="https://thetradecore.com/terms-and-conditions/"
+                href="https://tradepeople.co.uk/terms-and-conditions/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="border-b-2 font-bold border-accent"
@@ -376,7 +376,7 @@ const SignupForm = () => {
               </a>
               ? For information on how we process your data, see our{" "}
               <a
-                href="https://thetradecore.com/privacy-policy/"
+                href="https://tradepeople.co.uk/privacy-policy/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="border-b-2 font-bold border-accent"

@@ -55,7 +55,7 @@ export default function AdminLayout({ children }) {
               <DialogHeader>
                 <div className="flex flex-col text-center">
                   <DialogTitle className="text-2xl">
-                    <span> You're already logged in</span>
+                    <span> You’re already logged in</span>
                   </DialogTitle>
                   <DialogDescription className="text-sm font-bold">
                     Either you are looking to post a free job or sign up as a tradesperson please sign out first.

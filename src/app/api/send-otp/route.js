@@ -7,7 +7,7 @@ import * as Sentry from '@sentry/nextjs';
 
 const prisma = new PrismaClient();
 const accountSid = process.env.NEXT_PUBLIC_ACC_SID; // SID
-const authToken = process.env.NEXT_PUBLIC_ACC_AUTH; // Twilio auth token
+const authToken = (process.env.TWILIO_AUTH_TOKEN || process.env.NEXT_PUBLIC_ACC_AUTH); // Twilio auth token
 const twilioNumber = process.env.NEXT_PUBLIC_ACC_NUMBER; 
 
 const client = new twilio(accountSid, authToken);

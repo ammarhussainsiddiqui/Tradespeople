@@ -305,7 +305,7 @@ export default function ContractorProfile() {
                           <Progress />
               <p className="text-neutral-600 flex items-start gap-2">
                 <span className="text-2xl animate-pulse">✨</span>
-                <span>Congratulations! You're now listed in our directory, and customers can contact you directly through your preferred channels.</span>
+                <span>Congratulations! You’re now listed in our directory, and customers can contact you directly through your preferred channels.</span>
               </p>
               <div className="mt-6 p-4 bg-gradient-to-r from-accent/10 to-warning-soft rounded-lg border border-accent/30">
                 <div className="flex items-center gap-3">

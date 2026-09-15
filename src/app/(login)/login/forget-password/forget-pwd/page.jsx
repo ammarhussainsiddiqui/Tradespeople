@@ -76,7 +76,7 @@ const ForgetPwdContent = () => {
                     <br />
                     <div className='h-5'></div>
                     <span className="text-sm text-muted-foreground">
-                        Didnâ€™t receive the link?{' '}
+                        Didn’t receive the link?{' '}
                         <button
                             onClick={handleResend}
                             disabled={resendTimer > 0}
@@ -94,7 +94,7 @@ const ForgetPwdContent = () => {
                             href={'/login'}
                             className="text-foreground border-accent border-b"
                         >
-                            Take me toÂ Login.
+                            Take me to Login.
                         </Link>
                     </span>
                 </div>

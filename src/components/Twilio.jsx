@@ -267,7 +267,7 @@ const Twilio = ({ userData }) => {
                                                     style={{ justifyContent: 'center' }}
                                                     className="flex text-xs text-center item-center text-muted-foreground font-normal ml-auto cursor-pointer"
                                                 >
-                                                    Didnâ€™t receive the code? <b>
+                                                    Didn’t receive the code? <b>
                                                         <svg
                                                             style={{ marginTop: '2px', marginLeft: '10px' }}
                                                             className={`animate-spin h-3 w-3`}
@@ -299,7 +299,7 @@ const Twilio = ({ userData }) => {
                                                                 className="text-xs text-center text-muted-foreground font-normal cursor-pointer"
                                                                 onClick={resendCode}
                                                             >
-                                                                Didnâ€™t receive the code? <b><u>Resend Code</u></b>
+                                                                Didn’t receive the code? <b><u>Resend Code</u></b>
                                                             </span>
                                                         ) : (
                                                             <span className="text-xs text-center text-muted-foreground font-normal">
@@ -414,7 +414,7 @@ const Twilio = ({ userData }) => {
                 <div className="p-6 bg-neutral-100 rounded-lg flex flex-col md:flex-row md:justify-between">
                     <div className="mb-4 md:mb-0">
                         <p className="text-lg font-semibold">Your account is verified.</p>
-                        <p className="text-sm text-neutral-600">Your phone number has been verified. If youâ€™d like to use a different number, please update it here.</p>
+                        <p className="text-sm text-neutral-600">Your phone number has been verified. If you’d like to use a different number, please update it here.</p>
                     </div>
                     <div>
                         <button

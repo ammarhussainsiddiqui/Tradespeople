@@ -6,7 +6,7 @@ import * as Sentry from '@sentry/nextjs';
 const prisma = new PrismaClient();
 
 const corsHeaders = {
-  'Access-Control-Allow-Origin': 'https://thetradecore.com',
+  'Access-Control-Allow-Origin': 'https://tradepeople.co.uk',
   'Access-Control-Allow-Methods': 'GET, POST, DELETE, OPTIONS',
   'Access-Control-Allow-Headers': 'Content-Type, Authorization, ngrok-skip-browser-warning',
 };
@@ -21,7 +21,7 @@ export async function GET() {
         }, {
             status: 200,
             headers: {
-                'Access-Control-Allow-Origin': 'https://thetradecore.com',
+                'Access-Control-Allow-Origin': 'https://tradepeople.co.uk',
                 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
                 'Access-Control-Allow-Headers': 'Content-Type, Authorization, ngrok-skip-browser-warning',
             },
@@ -34,7 +34,7 @@ export async function GET() {
         }, {
             status: 500,
             headers: {
-                'Access-Control-Allow-Origin': 'https://thetradecore.com',
+                'Access-Control-Allow-Origin': 'https://tradepeople.co.uk',
                 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
                 'Access-Control-Allow-Headers': 'Content-Type, Authorization, ngrok-skip-browser-warning',
             },

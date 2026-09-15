@@ -13,17 +13,17 @@ import { getUserDetails } from "../../../actions/auth";
 import { toast } from "react-toastify";
 
 const socialOptions = [
-  { name: "WhatsApp", icon: "https://app.thetradecore.com/images/whatsapp.webp" },
-  { name: "Facebook", icon: "https://app.thetradecore.com/images/facebook.webp" },
-  { name: "Instagram", icon: "https://app.thetradecore.com/images/Instagram.webp" },
-  { name: "YouTube", icon: "https://app.thetradecore.com/images/youtube.webp" },
-  { name: "LinkedIn", icon: "https://app.thetradecore.com/images/LinkedIn.webp" },
-  { name: "Pinterest", icon: "https://app.thetradecore.com/images/Pinterest.webp" },
-  { name: "X", icon: "https://app.thetradecore.com/images/X.webp" },
-  { name: "Dribbble", icon: "https://app.thetradecore.com/images/Dribbble.webp" },
-  { name: "Benhance", icon: "https://app.thetradecore.com/images/Behance.webp" },
-  { name: "Slack", icon: "https://app.thetradecore.com/images/Slack.webp" },
-  { name: "Reddit", icon: "https://app.thetradecore.com/images/Reddit.webp" },
+  { name: "WhatsApp", icon: "https://app.tradepeople.co.uk/images/whatsapp.webp" },
+  { name: "Facebook", icon: "https://app.tradepeople.co.uk/images/facebook.webp" },
+  { name: "Instagram", icon: "https://app.tradepeople.co.uk/images/Instagram.webp" },
+  { name: "YouTube", icon: "https://app.tradepeople.co.uk/images/youtube.webp" },
+  { name: "LinkedIn", icon: "https://app.tradepeople.co.uk/images/LinkedIn.webp" },
+  { name: "Pinterest", icon: "https://app.tradepeople.co.uk/images/Pinterest.webp" },
+  { name: "X", icon: "https://app.tradepeople.co.uk/images/X.webp" },
+  { name: "Dribbble", icon: "https://app.tradepeople.co.uk/images/Dribbble.webp" },
+  { name: "Benhance", icon: "https://app.tradepeople.co.uk/images/Behance.webp" },
+  { name: "Slack", icon: "https://app.tradepeople.co.uk/images/Slack.webp" },
+  { name: "Reddit", icon: "https://app.tradepeople.co.uk/images/Reddit.webp" },
 ];
 
 export default function SocialMediaSection() {

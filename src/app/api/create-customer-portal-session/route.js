@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import authenticateToken from '../../authenticateToken';
 import * as Sentry from '@sentry/nextjs';
-const stripe = require('stripe')(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
+const stripe = require('stripe')((process.env.STRIPE_SECRET_KEY || process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY));
 
 export async function POST(request) {
   const authHeader = request.headers.get('authorization');

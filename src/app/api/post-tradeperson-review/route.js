@@ -1,13 +1,17 @@
-import { NextResponse } from 'next/server'; 
-import { PrismaClient } from '@prisma/client'; 
+import { NextResponse } from 'next/server';
+import { PrismaClient } from '@prisma/client';
 import * as Sentry from '@sentry/nextjs';
+import { forbidden, getRequestUser, unauthorized } from '../../../lib/auth/session';
 
-const prisma = new PrismaClient(); 
+const prisma = new PrismaClient();
 
-export async function POST(req) {    
+export async function POST(req) {
+
+  const user = await getRequestUser(req);
+  if (!user) return unauthorized();
 
   try {
-   
+
     // Parse the request body
     const { requestId, message, rating } = await req.json();
     //Validate inputs
@@ -27,6 +31,14 @@ export async function POST(req) {
       );
     }
 
+    const parsedRating = Number(rating);
+    if (!Number.isInteger(parsedRating) || parsedRating < 0 || parsedRating > 5) {
+      return NextResponse.json(
+        { error: 'Rating must be a whole number from 0 to 5.' },
+        { status: 400 }
+      );
+    }
+
     // Verify the Request exists
     const existingRequest = await prisma.request.findUnique({
       where: { id: parsedRequestId },
@@ -39,12 +51,26 @@ export async function POST(req) {
       );
     }
 
+    // Only the tradesperson on this request can review it, and only once
+    if (existingRequest.tradepersonId !== user.id) return forbidden();
+
+    const alreadyReviewed = await prisma.reviews.findFirst({
+      where: { requestId: parsedRequestId, reviewType: "tradeperson" },
+      select: { id: true },
+    });
+    if (alreadyReviewed) {
+      return NextResponse.json(
+        { error: 'You have already reviewed this job.' },
+        { status: 409 }
+      );
+    }
+
     // Create the review in the database
     const newReview = await prisma.reviews.create({
       data: {
         message,
-        rating,
-        requestId: parsedRequestId, 
+        rating: parsedRating,
+        requestId: parsedRequestId,
         reviewType : "tradeperson",
       },
     });
